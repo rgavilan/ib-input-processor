@@ -8,10 +8,10 @@ app:
 spring:
   kafka:
     bootstrap-servers:
-    - localhost:29092
+      - localhost:29092
     consumer:
       bootstrap-servers:
-      - localhost:29092 
+        - localhost:29092
       group-id: input-processor
 
 ## Actuator
