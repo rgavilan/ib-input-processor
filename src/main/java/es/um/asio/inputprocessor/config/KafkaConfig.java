@@ -1,4 +1,4 @@
-package es.um.asio.inputprocessor;
+package es.um.asio.inputprocessor.config;
 
 import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,7 +22,7 @@ public class KafkaConfig {
     /**
      * Input topic name.
      */
-    @Value("app.kafka.input-topic-name")
+    @Value("app.kafka.general-topic-name")
     private String generalTopicName;
 
     /**
