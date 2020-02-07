@@ -14,41 +14,35 @@ import es.um.asio.inputprocessor.repository.MessageRepository;
  */
 @Component
 public class KafkaMessageRepositoryImpl implements MessageRepository {
-    
+
     /**
      * Logger
      */
     private final Logger logger = LoggerFactory.getLogger(KafkaMessageRepositoryImpl.class);
-    
+
     /**
      * Kafka template.
      */
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
-    
+
     /**
      * Topic name
      */
     @Value("${app.kafka.general-topic-name}")
     private String generalTopicName;
-    
-    /**
-     * Topic name
-     */
-    @Value("${app.kafka.management-topic-name}")
-    private String managementTopicName;
 
     @Override
-    public void save(String message) {
-        if(logger.isDebugEnabled()) {
-            logger.debug("Received message: {}", message);
+    public void save(final String message) {
+        if (this.logger.isDebugEnabled()) {
+            this.logger.debug("Received message: {}", message);
         }
-        
+
         // Cuando el mensaje sea recibido es preciso enviarlo al topic general
-        kafkaTemplate.send(generalTopicName, message);
-        
-        if(logger.isDebugEnabled()) {
-            logger.debug("Message: {} sended to general topic", message);
+        this.kafkaTemplate.send(this.generalTopicName, message);
+
+        if (this.logger.isDebugEnabled()) {
+            this.logger.debug("Message: {} sended to general topic", message);
         }
     }
 

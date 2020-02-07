@@ -3,6 +3,7 @@ app:
   kafka:
     input-topic-name: input-data
     general-topic-name: general-data
+    create-topics: false
 
 # Spring configuration
 spring:
@@ -29,4 +30,4 @@ management:
 
 ## In case of configure web endpoints, remove it or change port number
 server:
-  port: 9321
+  port: ${management.server.port}
