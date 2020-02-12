@@ -41,4 +41,16 @@ La aplicación está preparada para funcionar con JDK 11. En caso de necesitar t
 ```
 
 Para descargar JDK 11, se precisa utilizar openjdk, la cual se puede obtener de https://jdk.java.net/11/
- 
+
+## Instalación en entorno real
+
+Será preciso configurar las siguientes variables de entorno cuando se instale en un entorno real:
+
+|Variable|Descripción|Valor por defecto|
+|---|---|---|
+|`APP_KAFKA_INPUT_TOPIC_NAME`|Nombre del topic de Kafka de entrada|input-data|
+|`APP_KAFKA_GENERAL_TOPIC_NAME`|Nombre del topic de Kafka general|general-data|
+|`APP_KAFKA_CREATE_TOPICS`|Flag que indica si debe crear automáticamente los topics de Kafka. Valores admisibles `true` y `false`|false|
+| `SPRING_KAFKA_BOOTSTRAP_SERVERS` | URL del servicio de Kafka para los productores | localhost:29092 |
+| `SPRING_KAFKA_CONSUMER_BOOTSTRAP_SERVERS` | URL del servicio de Kafka para los consumidores | localhost:29092 |
+| `SPRING_KAFKA_CONSUMER_GROUP_ID` | ID del grupo de consumidores | input-processor |
