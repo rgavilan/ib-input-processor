@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
+import es.um.asio.domain.DataSetData;
+import es.um.asio.domain.InputData;
 import es.um.asio.inputprocessor.service.MessageService;
 
 /**
@@ -26,12 +28,24 @@ public class InputListener {
      * 
      * @param message
      */
-    @KafkaListener(topics = "#{'${app.kafka.input-topic-name}'.split(',')}")
+//    @KafkaListener(topics = "#{'${app.kafka.input-topic-name}'.split(',')}")
     public void listen(final String message) {
         if (this.logger.isDebugEnabled()) {
             this.logger.debug("Received message: {}", message);
         }
 
-        this.messageService.process(message);
+//        this.messageService.process(message);
+    }
+    
+    /**
+     * Method listening input topic name
+     * 
+     * @param message
+     */
+    @KafkaListener(topics = "input-data", containerFactory = "inputKafkaListenerContainerFactory")
+    public void listen(final InputData<DataSetData> data) {
+        if (this.logger.isDebugEnabled()) {
+            this.logger.debug("Received message: {}", data);
+        }
     }
 }
