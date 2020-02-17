@@ -1,0 +1,37 @@
+---
+app:
+  kafka:
+    input-topic-name: input-data
+    general-topic-name: general-data
+    create-topics: false
+
+# Spring configuration
+spring:
+  kafka:
+    bootstrap-servers:
+      - localhost:29092
+    consumer:
+      bootstrap-servers:
+        - localhost:29092
+      group-id: input-processor
+
+  data:    mongodb:      host: localhost
+      port: 27017
+      database: input_processor
+
+## Actuator
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: always
+  endpoints:
+    web:
+      base-path: /management
+  server:
+    port: 9321
+
+## In case of configure web endpoints, remove it or change port number
+server:
+  port: ${management.server.port}
