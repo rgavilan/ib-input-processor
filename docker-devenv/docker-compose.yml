@@ -24,7 +24,22 @@ services:
       - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
     depends_on:
       - zookeeper
+  db:
+    image: 'bitnami/mongodb:4.0'
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodata:/bitnami
+    environment:
+      - MONGODB_ROOT_PASSWORD=password123
+      - MONGODB_USERNAME=app
+      - MONGODB_PASSWORD=password123
+      - MONGODB_DATABASE=app
+      - MONGODB_REPLICA_SET_MODE=primary
+      - MONGODB_REPLICA_SET_KEY=1234567890
 
 volumes:
   zookeeper_data:
   kafka_data:
+  mongodata:
+  
