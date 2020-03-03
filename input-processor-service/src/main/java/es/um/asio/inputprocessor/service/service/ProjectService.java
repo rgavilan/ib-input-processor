@@ -7,4 +7,6 @@ import es.um.asio.domain.project.Project;
  */
 public interface ProjectService {
 
+    void save(Project project);
+
 }

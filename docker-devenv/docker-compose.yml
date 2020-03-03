@@ -32,14 +32,32 @@ services:
       - mongodata:/bitnami
     environment:
       - MONGODB_ROOT_PASSWORD=password123
-      - MONGODB_USERNAME=app
+      - MONGODB_USERNAME=input-processor
       - MONGODB_PASSWORD=password123
-      - MONGODB_DATABASE=app
+      - MONGODB_DATABASE=input-processor
       - MONGODB_REPLICA_SET_MODE=primary
       - MONGODB_REPLICA_SET_KEY=1234567890
-
+#  mysql:
+#    image: mariadb:10.3
+#    restart: unless-stopped
+#    ports:
+#      - "3307:3306"
+#    volumes:
+#      - mysql-data:/var/lib/mysql
+#    environment:
+#      # MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
+#      MYSQL_ROOT_PASSWORD: root
+#      # CONFIG - Change the default values below (should match values passed to wikibase)
+#      MYSQL_DATABASE: 'asio_jobs'
+#      MYSQL_USER: 'asio_jobs'
+#      MYSQL_PASSWORD: 'sqlpass'
+#    networks:
+#      default:
+#        aliases:
+#         - mysql.svc
 volumes:
   zookeeper_data:
   kafka_data:
   mongodata:
+#  mysql-data:
   

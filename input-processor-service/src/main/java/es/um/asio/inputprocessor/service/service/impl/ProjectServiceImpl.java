@@ -18,4 +18,16 @@ public class ProjectServiceImpl implements ProjectService {
      */
     @Autowired
     private ProjectRepository repository;
+
+    /**
+     * Save.
+     *
+     * @param project
+     *            the project
+     */
+    @Override
+    public void save(Project project) {
+        repository.insert(project);
+
+    }
 }

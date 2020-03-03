@@ -18,7 +18,9 @@ spring:
   data:    mongodb:      host: localhost
       port: 27017
       database: input_processor
-
+      username: input-processor
+      password: password123
+      
 ## Actuator
 management:
   endpoint:
