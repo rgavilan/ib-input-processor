@@ -8,7 +8,10 @@ import org.springframework.stereotype.Component;
 
 import es.um.asio.domain.DataSetData;
 import es.um.asio.domain.InputData;
+import es.um.asio.domain.project.PlannedJustificationsProject;
+import es.um.asio.domain.project.Project;
 import es.um.asio.inputprocessor.kafka.service.MessageService;
+import es.um.asio.inputprocessor.service.service.ProjectService;
 
 /**
  * Input message listener
@@ -20,18 +23,37 @@ public class InputListener {
      */
     private final Logger logger = LoggerFactory.getLogger(InputListener.class);
 
+    // @Autowired
+    // private MessageService messageService;
+
     @Autowired
-    private MessageService messageService;
+    private ProjectService projectService;
 
     /**
      * Method listening input topic name
      * 
      * @param message
      */
-    @KafkaListener(topics = "input-data", containerFactory = "inputKafkaListenerContainerFactory")
+    @KafkaListener(topics = "#{'${app.kafka.input-topic-name}'.split(',')}", containerFactory = "inputKafkaListenerContainerFactory")
     public void listen(final InputData<DataSetData> data) {
         if (this.logger.isDebugEnabled()) {
             this.logger.debug("Received message: {}", data);
         }
+
+        DataSetData incomingData = data.getData();
+        if (incomingData instanceof Project) {
+            if (logger.isDebugEnabled()) {
+                logger.debug("Saving into mongoDB ", data);
+            }
+            projectService.save((Project) incomingData);
+        }
+
+        if (incomingData instanceof PlannedJustificationsProject) {
+            if (logger.isDebugEnabled()) {
+                logger.debug("Saving into mongoDB ", data);
+            }
+            // projectService.save((PlannedJustificationsProject) incomingData);
+        }
     }
+
 }

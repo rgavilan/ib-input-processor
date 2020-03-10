@@ -32,6 +32,7 @@ public class MessageServiceImpl implements MessageService {
     @Override
     public void process(final String message) {
         if (this.logger.isDebugEnabled()) {
+
             this.logger.debug("Insert new message: {}", message);
         }
 

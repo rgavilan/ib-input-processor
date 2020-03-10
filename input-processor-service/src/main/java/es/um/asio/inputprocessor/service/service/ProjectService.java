@@ -7,6 +7,12 @@ import es.um.asio.domain.project.Project;
  */
 public interface ProjectService {
 
+    /**
+     * Save a project.
+     *
+     * @param project
+     *            the project
+     */
     void save(Project project);
 
 }

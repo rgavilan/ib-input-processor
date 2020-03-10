@@ -28,6 +28,5 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public void save(Project project) {
         repository.insert(project);
-
     }
 }
