@@ -20,6 +20,7 @@ spring:
       database: input_processor
       username: input-processor
       password: password123
+      database: asio
       
 ## Actuator
 management:

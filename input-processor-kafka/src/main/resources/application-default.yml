@@ -2,6 +2,12 @@
 app:
   kafka:
     create-topics: true
+#  persistence:
+#    datasource:
+#      driver-class-name: com.mysql.jdbc.Driver
+#      username: root
+#      password: root
+#      url: jdbc:mysql://localhost:3307/asio_jobs?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
 
 ## Actuator
 management:

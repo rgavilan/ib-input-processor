@@ -1,4 +1,4 @@
-version: '3'
+version: '3.1'
 
 services:
   zookeeper:
@@ -24,40 +24,45 @@ services:
       - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
     depends_on:
       - zookeeper
-  db:
+#  db:
+#    image: 'bitnami/mongodb:4.0'
+#    ports:
+#      - "27017:27017"
+#    volumes:
+#      - mongodata:/bitnami
+#    environment:
+#      - MONGODB_ROOT_PASSWORD=password123
+#      - MONGODB_USERNAME=asio
+#      - MONGODB_PASSWORD=password123
+#      - MONGODB_DATABASE=asio
+#      - MONGODB_REPLICA_SET_MODE=primary
+#      - MONGODB_REPLICA_SET_KEY=1234567890
+  mongo:
     image: 'bitnami/mongodb:4.0'
     ports:
       - "27017:27017"
+  mysql:
+    image: mariadb:10.3
+    restart: unless-stopped
+    ports:
+#      - "3306:3306"
+      - "3307:3306"
     volumes:
-      - mongodata:/bitnami
+      - mysql-data:/var/lib/mysql
     environment:
-      - MONGODB_ROOT_PASSWORD=password123
-      - MONGODB_USERNAME=input-processor
-      - MONGODB_PASSWORD=password123
-      - MONGODB_DATABASE=input-processor
-      - MONGODB_REPLICA_SET_MODE=primary
-      - MONGODB_REPLICA_SET_KEY=1234567890
-#  mysql:
-#    image: mariadb:10.3
-#    restart: unless-stopped
-#    ports:
-#      - "3307:3306"
-#    volumes:
-#      - mysql-data:/var/lib/mysql
-#    environment:
-#      # MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
-#      MYSQL_ROOT_PASSWORD: root
-#      # CONFIG - Change the default values below (should match values passed to wikibase)
-#      MYSQL_DATABASE: 'asio_jobs'
-#      MYSQL_USER: 'asio_jobs'
-#      MYSQL_PASSWORD: 'sqlpass'
-#    networks:
-#      default:
-#        aliases:
-#         - mysql.svc
+      # MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
+      MYSQL_ROOT_PASSWORD: root
+      # CONFIG - Change the default values below (should match values passed to wikibase)
+      MYSQL_DATABASE: 'asio_jobs'
+      MYSQL_USER: 'asio_jobs'
+      MYSQL_PASSWORD: 'sqlpass'
+    networks:
+      default:
+        aliases:
+         - mysql.svc
 volumes:
   zookeeper_data:
   kafka_data:
   mongodata:
-#  mysql-data:
+  mysql-data:
   
