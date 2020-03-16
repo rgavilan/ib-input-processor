@@ -1,7 +1,5 @@
 package es.um.asio.inputprocessor.kafka.config;
 
-import java.io.IOException;
-
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
@@ -14,16 +12,8 @@ import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.module.SimpleModule;
-
 import es.um.asio.domain.DataSetData;
 import es.um.asio.domain.InputData;
-import es.um.asio.domain.project.Project;
 import es.um.asio.inputprocessor.service.ServiceConfig;
 
 /**
