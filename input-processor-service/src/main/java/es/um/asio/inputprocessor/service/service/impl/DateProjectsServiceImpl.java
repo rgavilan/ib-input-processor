@@ -3,6 +3,7 @@ package es.um.asio.inputprocessor.service.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import es.um.asio.domain.DataSetData;
 import es.um.asio.domain.project.DateProjects;
 import es.um.asio.inputprocessor.service.repository.DateProjectsRepository;
 import es.um.asio.inputprocessor.service.service.DateProjectsService;
@@ -29,4 +30,17 @@ public class DateProjectsServiceImpl implements DateProjectsService {
     public void save(DateProjects dateProjects) {
         repository.insert(dateProjects);
     }
+
+    /**
+     * Save.
+     *
+     * @param data
+     *            the dateProjects
+     */
+    @Override
+    public void save(DataSetData data) {
+        repository.insert((DateProjects) data);
+
+    }
+
 }

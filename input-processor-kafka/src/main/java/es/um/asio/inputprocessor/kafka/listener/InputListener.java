@@ -1,5 +1,9 @@
 package es.um.asio.inputprocessor.kafka.listener;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.commons.lang3.ClassUtils.Interfaces;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +25,7 @@ import es.um.asio.inputprocessor.service.service.InvestigationGroupService;
 import es.um.asio.inputprocessor.service.service.PlannedJustificationsProjectService;
 import es.um.asio.inputprocessor.service.service.ProjectOriginsService;
 import es.um.asio.inputprocessor.service.service.ProjectService;
+import es.um.asio.inputprocessor.service.service.ServicesInterface;
 
 /**
  * Input message listener.
@@ -67,41 +72,24 @@ public class InputListener {
      */
     @KafkaListener(topics = "#{'${app.kafka.input-topic-name}'.split(',')}", containerFactory = "inputKafkaListenerContainerFactory")
     public void listen(final InputData<DataSetData> data) {
+        // TODO move to service
+        Map<Object, Object> doByClass = new HashMap<>();
+        doByClass.put(Project.class, projectService);
+        doByClass.put(PlannedJustificationsProject.class, plannedJustificationsProjectService);
+        doByClass.put(ProjectOrigins.class, projectOriginsService);
+        doByClass.put(DateProjects.class, dateProjectsService);
+        doByClass.put(InvestigationGroup.class, investigationGroupService);
+        doByClass.put(GroupContactData.class, groupContactDataService);
+
         if (this.logger.isDebugEnabled()) {
             this.logger.debug("Received message: {}", data);
         }
 
         DataSetData incomingData = data.getData();
-        if (incomingData instanceof Project) {
-            if (logger.isDebugEnabled()) {
-                logger.debug("Saving project into mongoDB ", data);
-            }
-            projectService.save((Project) incomingData);
-        } else if (incomingData instanceof PlannedJustificationsProject) {
-            if (logger.isDebugEnabled()) {
-                logger.debug("Saving PlannedJustificationsProject into mongoDB ", data);
-            }
-            plannedJustificationsProjectService.save((PlannedJustificationsProject) incomingData);
-        } else if (incomingData instanceof ProjectOrigins) {
-            if (logger.isDebugEnabled()) {
-                logger.debug("Saving projectOrigins into mongoDB ", data);
-            }
-            projectOriginsService.save((ProjectOrigins) incomingData);
-        } else if (incomingData instanceof DateProjects) {
-            if (logger.isDebugEnabled()) {
-                logger.debug("Saving dateProjects into mongoDB ", data);
-            }
-            dateProjectsService.save((DateProjects) incomingData);
-        } else if (incomingData instanceof InvestigationGroup) {
-            if (logger.isDebugEnabled()) {
-                logger.debug("Saving investigationGroup into mongoDB ", data);
-            }
-            investigationGroupService.save((InvestigationGroup) incomingData);
-        } else if (incomingData instanceof GroupContactData) {
-            if (logger.isDebugEnabled()) {
-                logger.debug("Saving groupContacData into mongoDB ", data);
-            }
-            groupContactDataService.save((GroupContactData) incomingData);
+        ServicesInterface repository = (ServicesInterface) doByClass.get(incomingData.getClass());
+        if (repository != null) {
+            logger.debug("Saving " + incomingData.getClass() + " into mongoDB ", data);
+            repository.save(incomingData);
         }
     }
 

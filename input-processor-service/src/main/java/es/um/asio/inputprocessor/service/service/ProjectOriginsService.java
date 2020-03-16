@@ -5,7 +5,7 @@ import es.um.asio.domain.project.ProjectOrigins;
 /**
  * {@link ProjectOrigins} service.
  */
-public interface ProjectOriginsService {
+public interface ProjectOriginsService extends ServicesInterface {
 
     /**
      * Save a project origins.

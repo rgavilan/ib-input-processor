@@ -5,7 +5,7 @@ import es.um.asio.domain.project.PlannedJustificationsProject;
 /**
  * {@link PlannedJustificationsProject} service.
  */
-public interface PlannedJustificationsProjectService {
+public interface PlannedJustificationsProjectService extends ServicesInterface {
 
     /**
      * Save a plannedJustificationsProject.

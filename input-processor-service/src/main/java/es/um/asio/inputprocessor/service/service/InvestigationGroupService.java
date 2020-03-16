@@ -5,7 +5,7 @@ import es.um.asio.domain.investigationGroup.InvestigationGroup;
 /**
  * {@link InvestigationGroup} service.
  */
-public interface InvestigationGroupService {
+public interface InvestigationGroupService extends ServicesInterface {
 
     /**
      * Save a investigationGroup.

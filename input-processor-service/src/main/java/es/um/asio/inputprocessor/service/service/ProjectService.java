@@ -5,7 +5,7 @@ import es.um.asio.domain.project.Project;
 /**
  * {@link Project} service.
  */
-public interface ProjectService {
+public interface ProjectService extends ServicesInterface {
 
     /**
      * Save a project.

@@ -5,7 +5,7 @@ import es.um.asio.domain.project.DateProjects;
 /**
  * {@link DateProjects} service.
  */
-public interface DateProjectsService {
+public interface DateProjectsService extends ServicesInterface {
 
     /**
      * Save a project.

@@ -3,6 +3,7 @@ package es.um.asio.inputprocessor.service.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import es.um.asio.domain.DataSetData;
 import es.um.asio.domain.investigationCenter.GroupContactData;
 import es.um.asio.inputprocessor.service.repository.GroupContactDataRepository;
 import es.um.asio.inputprocessor.service.service.GroupContactDataService;
@@ -28,5 +29,17 @@ public class GroupContactDataServiceImpl implements GroupContactDataService {
     @Override
     public void save(GroupContactData groupContactData) {
         repository.insert(groupContactData);
+    }
+
+    /**
+     * Save.
+     *
+     * @param data
+     *            the group contact data
+     */
+    @Override
+    public void save(DataSetData data) {
+        repository.insert((GroupContactData) data);
+
     }
 }
