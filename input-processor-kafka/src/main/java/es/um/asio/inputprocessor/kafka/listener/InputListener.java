@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 
 import es.um.asio.domain.DataSetData;
 import es.um.asio.domain.InputData;
+import es.um.asio.domain.ImportResult.ImportResult;
+import es.um.asio.domain.exitStatus.ExitStatus;
 import es.um.asio.inputprocessor.kafka.service.ServiceRedirectorService;
 import es.um.asio.inputprocessor.service.service.ServicesInterface;
 
@@ -43,6 +45,10 @@ public class InputListener {
         }
 
         DataSetData incomingData = data.getData();
+        if(incomingData instanceof ExitStatus) {
+            incomingData = new ImportResult(0, System.currentTimeMillis(), (ExitStatus)incomingData);
+        }
+        
         ServicesInterface repository = serviceRedirectorService.redirect(incomingData);
         if (repository != null) {
             logger.debug("Saving " + incomingData.getClass() + " into mongoDB ", data);
