@@ -46,7 +46,7 @@ public class InputListener {
 
         DataSetData incomingData = data.getData();
         if(incomingData instanceof ExitStatus) {
-            incomingData = new ImportResult(0, System.currentTimeMillis(), (ExitStatus)incomingData);
+            incomingData = new ImportResult((ExitStatus)incomingData);
         }
         
         ServicesInterface repository = serviceRedirectorService.redirect(incomingData);
