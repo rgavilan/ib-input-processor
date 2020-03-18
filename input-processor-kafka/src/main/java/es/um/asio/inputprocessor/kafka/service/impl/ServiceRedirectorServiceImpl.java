@@ -12,12 +12,12 @@ import org.springframework.stereotype.Service;
 
 import es.um.asio.domain.DataSetData;
 import es.um.asio.domain.ImportResult.ImportResult;
-import es.um.asio.domain.investigationCenter.GroupContactData;
-import es.um.asio.domain.investigationGroup.InvestigationGroup;
-import es.um.asio.domain.project.DateProjects;
-import es.um.asio.domain.project.PlannedJustificationsProject;
-import es.um.asio.domain.project.Project;
-import es.um.asio.domain.project.ProjectOrigins;
+import es.um.asio.domain.investigationCenter.DatosContactoGrupo;
+import es.um.asio.domain.investigationGroup.GrupoInvestigacion;
+import es.um.asio.domain.project.FechaProyecto;
+import es.um.asio.domain.project.JustificacionPrevistaProyecto;
+import es.um.asio.domain.project.Proyecto;
+import es.um.asio.domain.project.OrigenProyecto;
 import es.um.asio.inputprocessor.kafka.service.ServiceRedirectorService;
 import es.um.asio.inputprocessor.service.service.DateProjectsService;
 import es.um.asio.inputprocessor.service.service.GroupContactDataService;
@@ -73,12 +73,12 @@ public class ServiceRedirectorServiceImpl implements ServiceRedirectorService {
      */
     @PostConstruct
     public void init() {
-        doByClass.put(Project.class, projectService);
-        doByClass.put(PlannedJustificationsProject.class, plannedJustificationsProjectService);
-        doByClass.put(ProjectOrigins.class, projectOriginsService);
-        doByClass.put(DateProjects.class, dateProjectsService);
-        doByClass.put(InvestigationGroup.class, investigationGroupService);
-        doByClass.put(GroupContactData.class, groupContactDataService);
+        doByClass.put(Proyecto.class, projectService);
+        doByClass.put(JustificacionPrevistaProyecto.class, plannedJustificationsProjectService);
+        doByClass.put(OrigenProyecto.class, projectOriginsService);
+        doByClass.put(FechaProyecto.class, dateProjectsService);
+        doByClass.put(GrupoInvestigacion.class, investigationGroupService);
+        doByClass.put(DatosContactoGrupo.class, groupContactDataService);
         doByClass.put(ImportResult.class, importResultService);
     }
 

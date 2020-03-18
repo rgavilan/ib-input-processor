@@ -4,19 +4,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import es.um.asio.domain.DataSetData;
-import es.um.asio.domain.project.PlannedJustificationsProject;
-import es.um.asio.domain.project.Project;
+import es.um.asio.domain.project.JustificacionPrevistaProyecto;
+import es.um.asio.domain.project.Proyecto;
 import es.um.asio.inputprocessor.service.repository.PlannedJustificationsProjectRepository;
 import es.um.asio.inputprocessor.service.service.PlannedJustificationsProjectService;
 
 /**
- * {@link Project} service implementation.
+ * {@link Proyecto} service implementation.
  */
 @Service
 public class PlannedJustificationsProjectServiceImpl implements PlannedJustificationsProjectService {
 
     /**
-     * {@link Project} repository.
+     * {@link Proyecto} repository.
      */
     @Autowired
     private PlannedJustificationsProjectRepository repository;
@@ -28,7 +28,7 @@ public class PlannedJustificationsProjectServiceImpl implements PlannedJustifica
      *            the planned justifications project
      */
     @Override
-    public void save(PlannedJustificationsProject pjp) {
+    public void save(JustificacionPrevistaProyecto pjp) {
         repository.insert(pjp);
     }
 
@@ -40,7 +40,7 @@ public class PlannedJustificationsProjectServiceImpl implements PlannedJustifica
      */
     @Override
     public void save(DataSetData data) {
-        repository.insert((PlannedJustificationsProject) data);
+        repository.insert((JustificacionPrevistaProyecto) data);
 
     }
 }

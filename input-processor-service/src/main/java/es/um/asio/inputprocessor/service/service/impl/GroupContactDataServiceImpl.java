@@ -4,18 +4,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import es.um.asio.domain.DataSetData;
-import es.um.asio.domain.investigationCenter.GroupContactData;
+import es.um.asio.domain.investigationCenter.DatosContactoGrupo;
 import es.um.asio.inputprocessor.service.repository.GroupContactDataRepository;
 import es.um.asio.inputprocessor.service.service.GroupContactDataService;
 
 /**
- * {@link GroupContactData} service implementation.
+ * {@link DatosContactoGrupo} service implementation.
  */
 @Service
 public class GroupContactDataServiceImpl implements GroupContactDataService {
 
     /**
-     * {@link GroupContactData} repository.
+     * {@link DatosContactoGrupo} repository.
      */
     @Autowired
     private GroupContactDataRepository repository;
@@ -27,7 +27,7 @@ public class GroupContactDataServiceImpl implements GroupContactDataService {
      *            the group contact data
      */
     @Override
-    public void save(GroupContactData groupContactData) {
+    public void save(DatosContactoGrupo groupContactData) {
         repository.insert(groupContactData);
     }
 
@@ -39,7 +39,7 @@ public class GroupContactDataServiceImpl implements GroupContactDataService {
      */
     @Override
     public void save(DataSetData data) {
-        repository.insert((GroupContactData) data);
+        repository.insert((DatosContactoGrupo) data);
 
     }
 }

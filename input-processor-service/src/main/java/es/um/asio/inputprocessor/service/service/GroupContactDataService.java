@@ -1,9 +1,9 @@
 package es.um.asio.inputprocessor.service.service;
 
-import es.um.asio.domain.investigationCenter.GroupContactData;
+import es.um.asio.domain.investigationCenter.DatosContactoGrupo;
 
 /**
- * {@link GroupContactData} service.
+ * {@link DatosContactoGrupo} service.
  */
 public interface GroupContactDataService extends ServicesInterface {
 
@@ -13,6 +13,6 @@ public interface GroupContactDataService extends ServicesInterface {
      * @param groupContactData
      *            the group contact data
      */
-    void save(GroupContactData groupContactData);
+    void save(DatosContactoGrupo groupContactData);
 
 }

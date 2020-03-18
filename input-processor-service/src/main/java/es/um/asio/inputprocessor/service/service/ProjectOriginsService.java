@@ -1,9 +1,9 @@
 package es.um.asio.inputprocessor.service.service;
 
-import es.um.asio.domain.project.ProjectOrigins;
+import es.um.asio.domain.project.OrigenProyecto;
 
 /**
- * {@link ProjectOrigins} service.
+ * {@link OrigenProyecto} service.
  */
 public interface ProjectOriginsService extends ServicesInterface {
 
@@ -14,6 +14,6 @@ public interface ProjectOriginsService extends ServicesInterface {
      *            origins
      *            the project origins
      */
-    void save(ProjectOrigins projectOrigins);
+    void save(OrigenProyecto projectOrigins);
 
 }

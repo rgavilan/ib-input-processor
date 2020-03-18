@@ -4,18 +4,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import es.um.asio.domain.DataSetData;
-import es.um.asio.domain.project.Project;
+import es.um.asio.domain.project.Proyecto;
 import es.um.asio.inputprocessor.service.repository.ProjectRepository;
 import es.um.asio.inputprocessor.service.service.ProjectService;
 
 /**
- * {@link Project} service implementation.
+ * {@link Proyecto} service implementation.
  */
 @Service
 public class ProjectServiceImpl implements ProjectService {
 
     /**
-     * {@link Project} repository.
+     * {@link Proyecto} repository.
      */
     @Autowired
     private ProjectRepository repository;
@@ -27,7 +27,7 @@ public class ProjectServiceImpl implements ProjectService {
      *            the project
      */
     @Override
-    public void save(Project project) {
+    public void save(Proyecto project) {
         repository.insert(project);
     }
 
@@ -39,7 +39,7 @@ public class ProjectServiceImpl implements ProjectService {
      */
     @Override
     public void save(DataSetData data) {
-        repository.insert((Project) data);
+        repository.insert((Proyecto) data);
 
     }
 }

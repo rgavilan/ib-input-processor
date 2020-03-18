@@ -1,9 +1,9 @@
 package es.um.asio.inputprocessor.service.service;
 
-import es.um.asio.domain.investigationGroup.InvestigationGroup;
+import es.um.asio.domain.investigationGroup.GrupoInvestigacion;
 
 /**
- * {@link InvestigationGroup} service.
+ * {@link GrupoInvestigacion} service.
  */
 public interface InvestigationGroupService extends ServicesInterface {
 
@@ -13,6 +13,6 @@ public interface InvestigationGroupService extends ServicesInterface {
      * @param investigationGroup
      *            the investigation group
      */
-    void save(InvestigationGroup investigationGroup);
+    void save(GrupoInvestigacion investigationGroup);
 
 }

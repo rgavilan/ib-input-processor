@@ -1,9 +1,9 @@
 package es.um.asio.inputprocessor.service.service;
 
-import es.um.asio.domain.project.DateProjects;
+import es.um.asio.domain.project.FechaProyecto;
 
 /**
- * {@link DateProjects} service.
+ * {@link FechaProyecto} service.
  */
 public interface DateProjectsService extends ServicesInterface {
 
@@ -13,6 +13,6 @@ public interface DateProjectsService extends ServicesInterface {
      * @param project
      *            the project
      */
-    void save(DateProjects dateProject);
+    void save(FechaProyecto dateProject);
 
 }

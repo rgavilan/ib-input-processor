@@ -1,9 +1,9 @@
 package es.um.asio.inputprocessor.service.service;
 
-import es.um.asio.domain.project.Project;
+import es.um.asio.domain.project.Proyecto;
 
 /**
- * {@link Project} service.
+ * {@link Proyecto} service.
  */
 public interface ProjectService extends ServicesInterface {
 
@@ -13,6 +13,6 @@ public interface ProjectService extends ServicesInterface {
      * @param project
      *            the project
      */
-    void save(Project project);
+    void save(Proyecto project);
 
 }

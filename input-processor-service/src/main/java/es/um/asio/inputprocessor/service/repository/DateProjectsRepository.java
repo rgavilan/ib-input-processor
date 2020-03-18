@@ -2,11 +2,11 @@ package es.um.asio.inputprocessor.service.repository;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import es.um.asio.domain.project.DateProjects;
+import es.um.asio.domain.project.FechaProyecto;
 
 /**
- * {@link Project} repository.
+ * {@link Proyecto} repository.
  */
-public interface DateProjectsRepository extends MongoRepository<DateProjects, String> {
+public interface DateProjectsRepository extends MongoRepository<FechaProyecto, String> {
 
 }

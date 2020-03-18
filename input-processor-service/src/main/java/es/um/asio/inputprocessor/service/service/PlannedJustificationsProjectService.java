@@ -1,9 +1,9 @@
 package es.um.asio.inputprocessor.service.service;
 
-import es.um.asio.domain.project.PlannedJustificationsProject;
+import es.um.asio.domain.project.JustificacionPrevistaProyecto;
 
 /**
- * {@link PlannedJustificationsProject} service.
+ * {@link JustificacionPrevistaProyecto} service.
  */
 public interface PlannedJustificationsProjectService extends ServicesInterface {
 
@@ -13,6 +13,6 @@ public interface PlannedJustificationsProjectService extends ServicesInterface {
      * @param plannedJustificationsProject
      *            the planned justifications project
      */
-    void save(PlannedJustificationsProject pjp);
+    void save(JustificacionPrevistaProyecto pjp);
 
 }
