@@ -1,6 +1,6 @@
 package es.um.asio.inputprocessor.service.service;
 
-import es.um.asio.domain.investigationGroup.GrupoInvestigacion;
+import es.um.asio.domain.gruposInvestigacion.GrupoInvestigacion;
 
 /**
  * {@link GrupoInvestigacion} service.

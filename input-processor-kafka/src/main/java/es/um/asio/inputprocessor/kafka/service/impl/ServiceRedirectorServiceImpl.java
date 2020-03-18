@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import es.um.asio.domain.DataSetData;
 import es.um.asio.domain.importResult.ImportResult;
 import es.um.asio.domain.gruposInvestigacion.DatosContactoGrupo;
-import es.um.asio.domain.investigationGroup.GrupoInvestigacion;
+import es.um.asio.domain.gruposInvestigacion.GrupoInvestigacion;
 import es.um.asio.domain.project.FechaProyecto;
 import es.um.asio.domain.project.JustificacionPrevistaProyecto;
 import es.um.asio.domain.project.Proyecto;
