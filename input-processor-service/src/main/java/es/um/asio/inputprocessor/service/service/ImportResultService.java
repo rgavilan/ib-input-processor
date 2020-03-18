@@ -1,6 +1,6 @@
 package es.um.asio.inputprocessor.service.service;
 
-import es.um.asio.domain.ImportResult.ImportResult;
+import es.um.asio.domain.importResult.ImportResult;
 
 /**
  * {@link ImportResult} service.

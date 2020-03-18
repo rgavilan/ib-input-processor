@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 import es.um.asio.domain.DataSetData;
 import es.um.asio.domain.InputData;
-import es.um.asio.domain.ImportResult.ImportResult;
+import es.um.asio.domain.importResult.ImportResult;
 import es.um.asio.domain.exitStatus.ExitStatus;
 import es.um.asio.inputprocessor.kafka.service.ServiceRedirectorService;
 import es.um.asio.inputprocessor.service.service.ServicesInterface;

@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import es.um.asio.domain.DataSetData;
-import es.um.asio.domain.ImportResult.ImportResult;
+import es.um.asio.domain.importResult.ImportResult;
 import es.um.asio.domain.investigationCenter.DatosContactoGrupo;
 import es.um.asio.domain.investigationGroup.GrupoInvestigacion;
 import es.um.asio.domain.project.FechaProyecto;
