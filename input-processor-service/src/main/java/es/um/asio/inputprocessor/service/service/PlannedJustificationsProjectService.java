@@ -1,6 +1,6 @@
 package es.um.asio.inputprocessor.service.service;
 
-import es.um.asio.domain.project.JustificacionPrevistaProyecto;
+import es.um.asio.domain.proyectos.JustificacionPrevistaProyecto;
 
 /**
  * {@link JustificacionPrevistaProyecto} service.

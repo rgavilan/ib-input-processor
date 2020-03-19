@@ -2,7 +2,7 @@ package es.um.asio.inputprocessor.service.repository;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import es.um.asio.domain.project.FechaProyecto;
+import es.um.asio.domain.proyectos.FechaProyecto;
 
 /**
  * {@link Proyecto} repository.

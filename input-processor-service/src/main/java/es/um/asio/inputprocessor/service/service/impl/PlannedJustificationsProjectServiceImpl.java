@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import es.um.asio.domain.DataSetData;
-import es.um.asio.domain.project.JustificacionPrevistaProyecto;
-import es.um.asio.domain.project.Proyecto;
+import es.um.asio.domain.proyectos.JustificacionPrevistaProyecto;
+import es.um.asio.domain.proyectos.Proyecto;
 import es.um.asio.inputprocessor.service.repository.PlannedJustificationsProjectRepository;
 import es.um.asio.inputprocessor.service.service.PlannedJustificationsProjectService;
 

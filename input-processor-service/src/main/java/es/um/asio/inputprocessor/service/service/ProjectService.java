@@ -1,6 +1,6 @@
 package es.um.asio.inputprocessor.service.service;
 
-import es.um.asio.domain.project.Proyecto;
+import es.um.asio.domain.proyectos.Proyecto;
 
 /**
  * {@link Proyecto} service.

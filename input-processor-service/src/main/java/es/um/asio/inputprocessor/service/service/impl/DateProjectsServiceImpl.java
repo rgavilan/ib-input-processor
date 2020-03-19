@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import es.um.asio.domain.DataSetData;
-import es.um.asio.domain.project.FechaProyecto;
+import es.um.asio.domain.proyectos.FechaProyecto;
 import es.um.asio.inputprocessor.service.repository.DateProjectsRepository;
 import es.um.asio.inputprocessor.service.service.DateProjectsService;
 
