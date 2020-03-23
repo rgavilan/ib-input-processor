@@ -20,7 +20,7 @@
 	</scm>
 	
 	<properties>
-		<dataset-domain-model.version>1.0-SNAPSHOT</dataset-domain-model.version>
+		<dataset-domain-model.version>1.0-SEMANTMURC-16-SNAPSHOT</dataset-domain-model.version>
 	</properties>
 
 	<modules>
