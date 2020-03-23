@@ -15,12 +15,13 @@ spring:
         - localhost:29092
       group-id: input-processor
 
-  data:    mongodb:      host: localhost
+  data:
+    mongodb:
+      host: localhost
       port: 27017
-#      database: input_processor
-#      username: input-processor
-#      password: password123
-      database: asio
+      database: app
+      username: app
+      password: password123
       
 ## Actuator
 management:
