@@ -5,8 +5,6 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,9 +31,6 @@ import es.um.asio.inputprocessor.service.service.ServicesInterface;
  */
 @Service
 public class ServiceRedirectorServiceImpl implements ServiceRedirectorService {
-
-    /** Logger. */
-    private final Logger logger = LoggerFactory.getLogger(ServiceRedirectorServiceImpl.class);
 
     /** The project service. */
     @Autowired
