@@ -24,7 +24,7 @@ import es.um.asio.inputprocessor.service.service.InvestigationGroupService;
 import es.um.asio.inputprocessor.service.service.PlannedJustificationsProjectService;
 import es.um.asio.inputprocessor.service.service.ProjectOriginsService;
 import es.um.asio.inputprocessor.service.service.ProjectService;
-import es.um.asio.inputprocessor.service.service.ServicesInterface;
+import es.um.asio.inputprocessor.service.service.DatasetService;
 
 /**
  *  Service implementation to selecting {@link ServicesInterface}
@@ -86,8 +86,8 @@ public class ServiceRedirectorServiceImpl implements ServiceRedirectorService {
      * @return the services interface
      */
     @Override
-    public ServicesInterface redirect(DataSetData data) {
-        return (ServicesInterface) doByClass.get(data.getClass());
+    public DatasetService redirect(DataSetData data) {
+        return (DatasetService) doByClass.get(data.getClass());
     }
 
 }

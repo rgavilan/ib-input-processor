@@ -1,11 +1,11 @@
 package es.um.asio.inputprocessor.service.service;
 
-import es.um.asio.domain.DataSetData;
+import es.um.asio.domain.DataSetDataBase;
 
 /**
  * The Interface ServicesInterface.
  */
-public interface ServicesInterface {
+public interface DatasetService<T extends DataSetDataBase> {
 
     /**
      * Save a dataset.
@@ -13,5 +13,5 @@ public interface ServicesInterface {
      * @param data
      *            the dataset
      */
-    void save(DataSetData data);
+    T save(T data);
 }

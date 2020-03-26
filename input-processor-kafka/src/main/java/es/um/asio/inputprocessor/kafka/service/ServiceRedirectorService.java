@@ -1,7 +1,7 @@
 package es.um.asio.inputprocessor.kafka.service;
 
 import es.um.asio.domain.DataSetData;
-import es.um.asio.inputprocessor.service.service.ServicesInterface;
+import es.um.asio.inputprocessor.service.service.DatasetService;
 
  
 /**
@@ -15,5 +15,5 @@ public interface ServiceRedirectorService {
      * @param data the data
      * @return the services interface
      */
-    ServicesInterface redirect(DataSetData data);
+    DatasetService redirect(DataSetData data);
 }

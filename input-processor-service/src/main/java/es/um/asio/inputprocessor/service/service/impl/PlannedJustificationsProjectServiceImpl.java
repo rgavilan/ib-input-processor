@@ -3,7 +3,6 @@ package es.um.asio.inputprocessor.service.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import es.um.asio.domain.DataSetData;
 import es.um.asio.domain.proyectos.JustificacionPrevistaProyecto;
 import es.um.asio.domain.proyectos.Proyecto;
 import es.um.asio.inputprocessor.service.repository.PlannedJustificationsProjectRepository;
@@ -22,25 +21,10 @@ public class PlannedJustificationsProjectServiceImpl implements PlannedJustifica
     private PlannedJustificationsProjectRepository repository;
 
     /**
-     * Save.
-     *
-     * @param pjp
-     *            the planned justifications project
+     * {@inheritDoc}
      */
     @Override
-    public void save(JustificacionPrevistaProyecto pjp) {
-        repository.insert(pjp);
-    }
-
-    /**
-     * Save.
-     *
-     * @param data
-     *            the planned justificacions project
-     */
-    @Override
-    public void save(DataSetData data) {
-        repository.insert((JustificacionPrevistaProyecto) data);
-
+    public JustificacionPrevistaProyecto save(final JustificacionPrevistaProyecto pjp) {
+        return this.repository.save(pjp);
     }
 }

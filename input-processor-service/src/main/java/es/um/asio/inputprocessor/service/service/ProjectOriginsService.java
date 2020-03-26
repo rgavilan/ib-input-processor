@@ -5,15 +5,6 @@ import es.um.asio.domain.proyectos.OrigenProyecto;
 /**
  * {@link OrigenProyecto} service.
  */
-public interface ProjectOriginsService extends ServicesInterface {
-
-    /**
-     * Save a project origins.
-     *
-     * @param project
-     *            origins
-     *            the project origins
-     */
-    void save(OrigenProyecto projectOrigins);
+public interface ProjectOriginsService extends DatasetService<OrigenProyecto> {
 
 }

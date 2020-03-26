@@ -1,5 +1,18 @@
 ---
 app:
+  persistence:
+    datasource:
+      driver-class-name: org.postgresql.Driver
+      username: postgres
+      password: admin123
+      url: jdbc:postgresql://127.0.0.1:5432/app?ssl=false
+    jpa:
+      dialect: org.hibernate.dialect.PostgreSQL95Dialect
+      generate-ddl: false
+      show-sql: false
+      properties:
+        hibernate.temp.use_jdbc_metadata_defaults: false
+
   kafka:
     input-topic-name: input-data
     general-topic-name: general-data
@@ -15,14 +28,6 @@ spring:
         - localhost:29092
       group-id: input-processor
 
-  data:
-    mongodb:
-      host: localhost
-      port: 27017
-      database: app
-      username: app
-      password: password123
-      
 ## Actuator
 management:
   endpoint:

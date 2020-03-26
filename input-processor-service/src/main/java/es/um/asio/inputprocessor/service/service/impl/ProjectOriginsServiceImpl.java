@@ -3,7 +3,6 @@ package es.um.asio.inputprocessor.service.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import es.um.asio.domain.DataSetData;
 import es.um.asio.domain.proyectos.OrigenProyecto;
 import es.um.asio.inputprocessor.service.repository.ProjectOriginsRepository;
 import es.um.asio.inputprocessor.service.service.ProjectOriginsService;
@@ -21,25 +20,10 @@ public class ProjectOriginsServiceImpl implements ProjectOriginsService {
     private ProjectOriginsRepository repository;
 
     /**
-     * Save.
-     *
-     * @param projectOrigins
-     *            the project origins
+     * {@inheritDoc}
      */
     @Override
-    public void save(OrigenProyecto projectOrigins) {
-        repository.insert(projectOrigins);
-    }
-
-    /**
-     * Save.
-     *
-     * @param data
-     *            the project origins
-     */
-    @Override
-    public void save(DataSetData data) {
-        repository.insert((OrigenProyecto) data);
-
+    public OrigenProyecto save(final OrigenProyecto projectOrigins) {
+        return this.repository.save(projectOrigins);
     }
 }

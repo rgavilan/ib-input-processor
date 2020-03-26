@@ -25,25 +25,17 @@ services:
     depends_on:
       - zookeeper
   db:
-    image: 'bitnami/mongodb:4.2'
-    ports:
-      - "27017:27017"
-  mysql:
-    image: mariadb:10.3
-    restart: unless-stopped
-    ports:
-      - "3307:3306"
-    volumes:
-      - mysql-data:/var/lib/mysql
+    image: postgres:11.7
+    volumes: 
+     - pgdata:/var/lib/postgresql/data
+    ports: 
+     - 5432:5432
     environment:
-      - MONGODB_ROOT_PASSWORD=password123
-      - MONGODB_USERNAME=app
-      - MONGODB_PASSWORD=password123
-      - MONGODB_DATABASE=app
-      - MONGODB_REPLICA_SET_MODE=primary
-      - MONGODB_REPLICA_SET_KEY=1234567890
-      - MONGODB_ADVERTISED_HOSTNAME=localhost
+      POSTGRES_PASSWORD: admin123
+      POSTGRES_USER: postgres
+      POSTGRES_DB: app
+
 volumes:
   zookeeper_data:
   kafka_data:
-  mongodata:
+  pgdata:

@@ -3,7 +3,6 @@ package es.um.asio.inputprocessor.service.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import es.um.asio.domain.DataSetData;
 import es.um.asio.domain.importResult.ImportResult;
 import es.um.asio.inputprocessor.service.repository.ImportResultRepository;
 import es.um.asio.inputprocessor.service.service.ImportResultService;
@@ -12,7 +11,7 @@ import es.um.asio.inputprocessor.service.service.ImportResultService;
  * {@link ImportResult} service implementation.
  */
 @Service
-public class ImportResultServiceImpl implements ImportResultService{
+public class ImportResultServiceImpl implements ImportResultService {
 
     /**
      * {@link ImportResult} repository.
@@ -21,25 +20,11 @@ public class ImportResultServiceImpl implements ImportResultService{
     private ImportResultRepository repository;
 
     /**
-     * Save.
-     *
-     * @param data
-     *            the importResult
+     * {@inheritDoc}
      */
     @Override
-    public void save(DataSetData data) {
-        repository.insert((ImportResult)data);        
-    }
-
-    /**
-     * Save.
-     *
-     * @param importResult
-     *            the importResult
-     */
-    @Override
-    public void save(ImportResult importResult) {
-        repository.insert(importResult);        
+    public ImportResult save(final ImportResult importResult) {
+        return this.repository.save(importResult);
     }
 
 }

@@ -1,5 +1,11 @@
 ---
 app:
+  # Persistence
+  persistence:
+    jpa:
+      generate-ddl: true
+      show-sql: true
+
   kafka:
     create-topics: true
 #  persistence:

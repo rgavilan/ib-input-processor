@@ -9,11 +9,12 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
 import es.um.asio.domain.DataSetData;
+import es.um.asio.domain.DataSetDataBase;
 import es.um.asio.domain.InputData;
 import es.um.asio.domain.exitStatus.ExitStatus;
 import es.um.asio.domain.importResult.ImportResult;
 import es.um.asio.inputprocessor.kafka.service.ServiceRedirectorService;
-import es.um.asio.inputprocessor.service.service.ServicesInterface;
+import es.um.asio.inputprocessor.service.service.DatasetService;
 
 /**
  * Input message listener.
@@ -43,12 +44,12 @@ public class InputListener {
             this.logger.debug("Received message: {}", data);
         }
 
-        DataSetData incomingData = data.getData();
+        DataSetDataBase incomingData = (DataSetDataBase) data.getData();
         if(incomingData instanceof ExitStatus) {
             incomingData = new ImportResult((ExitStatus)incomingData);
         }
         
-        ServicesInterface repository = serviceRedirectorService.redirect(incomingData);
+        DatasetService repository = serviceRedirectorService.redirect(incomingData);
         if (repository != null) {
             logger.debug("Saving {} into mongoDB {}", incomingData.getClass(), data);
             repository.save(incomingData);

@@ -1,8 +1,9 @@
 package es.um.asio.inputprocessor.service.config.properties;
 
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.NestedConfigurationProperty;
 import org.springframework.validation.annotation.Validated;
 
 import lombok.Getter;
@@ -11,30 +12,22 @@ import lombok.Setter;
 /**
  * Persistence related properties.
  */
-@ConfigurationProperties("app.persistence.mongo")
+@ConfigurationProperties("app.persistence")
 @Validated
 @Getter
 @Setter
 public class PersistenceProperties {
     /**
-     * Connection string
+     * Datasource related properties.
      */
-    @NotEmpty
-    private String connectionString;
-    
+    @NotNull
+    @NestedConfigurationProperty
+    private DatasourceProperties datasource;
+
     /**
-     * Secured database configuration.
+     * JPA related properties.
      */
-    @NotEmpty
-    private String database;
-    
-    /**
-     * Username for the database.
-     */
-    private String username;
-    
-    /**
-     * Password for the database.
-     */
-    private String password;
+    @NotNull
+    @NestedConfigurationProperty
+    private JpaProperties jpa;
 }
