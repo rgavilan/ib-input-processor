@@ -29,7 +29,7 @@ import es.um.asio.inputprocessor.service.service.ProjectService;
 import es.um.asio.inputprocessor.service.service.ServicesInterface;
 
 /**
- * Service implementation to handle message entity related operations.
+ *  Service implementation to selecting {@link ServicesInterface}
  */
 @Service
 public class ServiceRedirectorServiceImpl implements ServiceRedirectorService {
@@ -68,8 +68,9 @@ public class ServiceRedirectorServiceImpl implements ServiceRedirectorService {
     /** The do by class. */
     private Map<Object, Object> doByClass = new HashMap<>();
 
+   
     /**
-     * Inits the.
+     * Binds {@link ServicesInterface} types to instances.
      */
     @PostConstruct
     public void init() {
@@ -82,11 +83,11 @@ public class ServiceRedirectorServiceImpl implements ServiceRedirectorService {
         doByClass.put(ImportResult.class, importResultService);
     }
 
+   
     /**
-     * Redirect.
+     * Gets a {@link ServicesInterface} based on {@link DataSetData} type.
      *
-     * @param data
-     *            the data
+     * @param data the data
      * @return the services interface
      */
     @Override

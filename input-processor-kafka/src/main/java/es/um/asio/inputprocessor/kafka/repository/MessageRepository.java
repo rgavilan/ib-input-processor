@@ -4,6 +4,7 @@ package es.um.asio.inputprocessor.kafka.repository;
  * Repository for messages.
  */
 public interface MessageRepository {
+    
     /**
      * Save a message into the system
      *

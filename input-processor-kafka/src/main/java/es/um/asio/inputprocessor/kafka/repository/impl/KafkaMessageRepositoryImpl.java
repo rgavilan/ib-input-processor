@@ -32,6 +32,11 @@ public class KafkaMessageRepositoryImpl implements MessageRepository {
     @Value("${app.kafka.general-topic-name}")
     private String generalTopicName;
 
+    /**
+     * Sends the message to Kafka topic
+     *
+     * @param message the message
+     */
     @Override
     public void save(final String message) {
         if (this.logger.isDebugEnabled()) {

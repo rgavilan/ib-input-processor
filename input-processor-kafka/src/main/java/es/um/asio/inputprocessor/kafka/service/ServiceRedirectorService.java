@@ -3,16 +3,17 @@ package es.um.asio.inputprocessor.kafka.service;
 import es.um.asio.domain.DataSetData;
 import es.um.asio.inputprocessor.service.service.ServicesInterface;
 
+ 
 /**
- * Service to handle message entity related operations
+ * Service interface to selecting {@link ServicesInterface}
  */
 public interface ServiceRedirectorService {
+   
     /**
-     * Process a message
+     * Gets a {@link ServicesInterface} based on {@link DataSetData} type.
      *
-     * @param message
-     *            The message
-     * @return
+     * @param data the data
+     * @return the services interface
      */
     ServicesInterface redirect(DataSetData data);
 }

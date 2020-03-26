@@ -57,6 +57,11 @@ public class KafkaConfig {
                 new StringDeserializer(), new JsonDeserializer<>(InputData.class));
     }
 
+    /**
+     * Input kafka listener container factory.
+     *
+     * @return the concurrent kafka listener container factory
+     */
     @Bean
     public ConcurrentKafkaListenerContainerFactory<String, InputData<DataSetData>> inputKafkaListenerContainerFactory() {
         ConcurrentKafkaListenerContainerFactory<String, InputData<DataSetData>> factory = new ConcurrentKafkaListenerContainerFactory<>();
