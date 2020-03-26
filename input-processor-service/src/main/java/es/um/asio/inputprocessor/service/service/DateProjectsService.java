@@ -8,10 +8,10 @@ import es.um.asio.domain.proyectos.FechaProyecto;
 public interface DateProjectsService extends ServicesInterface {
 
     /**
-     * Save a project.
+     * Save a date project.
      *
-     * @param project
-     *            the project
+     * @param dateProject
+     *            the dateProject
      */
     void save(FechaProyecto dateProject);
 

@@ -10,7 +10,7 @@ public interface ImportResultService extends ServicesInterface {
     /**
      * Save a import result data.
      *
-     * @param groupContactData
+     * @param importResult
      *            the import result data
      */
     void save(ImportResult importResult);

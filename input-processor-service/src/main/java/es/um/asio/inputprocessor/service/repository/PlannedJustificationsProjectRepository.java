@@ -6,7 +6,7 @@ import es.um.asio.domain.proyectos.JustificacionPrevistaProyecto;
 import es.um.asio.domain.proyectos.Proyecto;
 
 /**
- * {@link Proyecto} repository.
+ * {@link JustificacionPrevistaProyecto} repository.
  */
 public interface PlannedJustificationsProjectRepository extends MongoRepository<JustificacionPrevistaProyecto, String> {
 

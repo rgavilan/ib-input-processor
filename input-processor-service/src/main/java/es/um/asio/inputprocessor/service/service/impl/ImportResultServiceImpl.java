@@ -34,7 +34,7 @@ public class ImportResultServiceImpl implements ImportResultService{
     /**
      * Save.
      *
-     * @param data
+     * @param importResult
      *            the importResult
      */
     @Override

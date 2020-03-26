@@ -23,7 +23,7 @@ public class ProjectOriginsServiceImpl implements ProjectOriginsService {
     /**
      * Save.
      *
-     * @param project
+     * @param projectOrigins
      *            the project origins
      */
     @Override

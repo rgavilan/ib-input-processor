@@ -10,13 +10,13 @@ import es.um.asio.inputprocessor.service.repository.PlannedJustificationsProject
 import es.um.asio.inputprocessor.service.service.PlannedJustificationsProjectService;
 
 /**
- * {@link Proyecto} service implementation.
+ * {@link JustificacionPrevistaProyecto} service implementation.
  */
 @Service
 public class PlannedJustificationsProjectServiceImpl implements PlannedJustificationsProjectService {
 
     /**
-     * {@link Proyecto} repository.
+     * {@link JustificacionPrevistaProyecto} repository.
      */
     @Autowired
     private PlannedJustificationsProjectRepository repository;
@@ -24,7 +24,7 @@ public class PlannedJustificationsProjectServiceImpl implements PlannedJustifica
     /**
      * Save.
      *
-     * @param project
+     * @param pjp
      *            the planned justifications project
      */
     @Override
