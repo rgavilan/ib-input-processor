@@ -27,10 +27,12 @@ import com.google.common.collect.Sets;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
+import es.um.asio.domain.DataSetData;
 import es.um.asio.domain.proyectos.Proyecto;
 import es.um.asio.inputprocessor.service.config.properties.DatasourceProperties;
 import es.um.asio.inputprocessor.service.config.properties.JpaProperties;
 import es.um.asio.inputprocessor.service.config.properties.PersistenceProperties;
+import es.um.asio.inputprocessor.service.repository.ProjectRepository;
 import es.um.asio.inputprocessor.service.repository.generic.DatasetGenericRepository;
 
 /**
@@ -38,9 +40,9 @@ import es.um.asio.inputprocessor.service.repository.generic.DatasetGenericReposi
  */
 @Configuration
 @EnableConfigurationProperties(PersistenceProperties.class)
-@EnableJpaRepositories(basePackageClasses = { DatasetGenericRepository.class })
+@EnableJpaRepositories(basePackageClasses = { ProjectRepository.class })
 @EnableTransactionManagement
-@EntityScan(basePackageClasses = { Proyecto.class })
+@EntityScan(basePackageClasses = { DataSetData.class })
 public class PersistenceConfig {
 
     @Autowired

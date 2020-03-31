@@ -15,6 +15,7 @@ import es.um.asio.domain.gruposInvestigacion.GrupoInvestigacion;
 import es.um.asio.domain.proyectos.FechaProyecto;
 import es.um.asio.domain.proyectos.JustificacionPrevistaProyecto;
 import es.um.asio.domain.proyectos.Proyecto;
+import es.um.asio.domain.proyectos.RelacionOrigenProyecto;
 import es.um.asio.domain.proyectos.OrigenProyecto;
 import es.um.asio.inputprocessor.kafka.service.ServiceRedirectorService;
 import es.um.asio.inputprocessor.service.service.DateProjectsService;
@@ -24,6 +25,7 @@ import es.um.asio.inputprocessor.service.service.InvestigationGroupService;
 import es.um.asio.inputprocessor.service.service.PlannedJustificationsProjectService;
 import es.um.asio.inputprocessor.service.service.ProjectOriginsService;
 import es.um.asio.inputprocessor.service.service.ProjectService;
+import es.um.asio.inputprocessor.service.service.DatasetGenericService;
 import es.um.asio.inputprocessor.service.service.DatasetService;
 
 /**
@@ -59,6 +61,12 @@ public class ServiceRedirectorServiceImpl implements ServiceRedirectorService {
     /** The import result service. */
     @Autowired
     private ImportResultService importResultService;
+    
+    /** 
+     * The dataset generic service. 
+     * */
+    @Autowired
+    private DatasetGenericService datasetGenericService;
 
     /** The do by class. */
     private Map<Object, Object> doByClass = new HashMap<>();
@@ -87,7 +95,11 @@ public class ServiceRedirectorServiceImpl implements ServiceRedirectorService {
      */
     @Override
     public DatasetService redirect(DataSetData data) {
-        return (DatasetService) doByClass.get(data.getClass());
+        var datasetService = (DatasetService) doByClass.get(data.getClass());
+        if(datasetService == null) {
+            return datasetGenericService;
+        }
+        return datasetGenericService;
     }
 
 }
