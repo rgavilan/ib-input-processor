@@ -1,0 +1,47 @@
+---
+app:
+  persistence:
+    datasource:
+      driver-class-name: com.mysql.jdbc.Driver
+      username: root
+      password: root
+#      url: jdbc:mysql://localhost:3306/app?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+      url: jdbc:mysql://localhost:3307/app?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&createDatabaseIfNotExist=true
+    jpa:
+      dialect: org.hibernate.dialect.MariaDB53Dialect
+      generate-ddl: false
+      show-sql: false
+      properties:
+        hibernate.temp.use_jdbc_metadata_defaults: false
+
+  kafka:
+    input-topic-name: input-data
+    general-topic-name: general-data
+    create-topics: false
+
+# Spring configuration
+spring:
+  kafka:
+    bootstrap-servers:
+      - localhost:29092
+    consumer:
+      bootstrap-servers:
+        - localhost:29092
+      group-id: input-processor
+
+## Actuator
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: always
+  endpoints:
+    web:
+      base-path: /management
+  server:
+    port: 9321
+
+## In case of configure web endpoints, remove it or change port number
+server:
+  port: ${management.server.port}
