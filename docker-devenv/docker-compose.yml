@@ -1,4 +1,4 @@
-version: '3.1'
+version: '3'
 
 services:
   zookeeper:
@@ -24,18 +24,28 @@ services:
       - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
     depends_on:
       - zookeeper
-  db:
-    image: postgres:11.7
-    volumes: 
-     - pgdata:/var/lib/postgresql/data
-    ports: 
-     - 5432:5432
+  mysql:
+    image: mariadb:10.3
+    restart: unless-stopped
+    ports:
+#      - "3306:3306"
+      - "3307:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
     environment:
-      POSTGRES_PASSWORD: admin123
-      POSTGRES_USER: postgres
-      POSTGRES_DB: app
+      # MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
+      MYSQL_ROOT_PASSWORD: root
+      # CONFIG - Change the default values below (should match values passed to wikibase)
+      MYSQL_DATABASE: 'app'
+      MYSQL_USER: 'app'
+      MYSQL_PASSWORD: 'sqlpass'
+    networks:
+      default:
+        aliases:
+         - mysql.svc
+
 
 volumes:
+  mysql-data:
   zookeeper_data:
   kafka_data:
-  pgdata:

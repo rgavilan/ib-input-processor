@@ -51,7 +51,7 @@ public class InputListener {
         
         DatasetService repository = serviceRedirectorService.redirect(incomingData);
         if (repository != null) {
-            logger.debug("Saving {} into mongoDB {}", incomingData.getClass(), data);
+            logger.debug("Saving {} into DB {}", incomingData.getClass(), data);
             repository.save(incomingData);
         }
     }

@@ -5,6 +5,8 @@ app:
     jpa:
       generate-ddl: true
       show-sql: true
+    datasource:
+      url: jdbc:mysql://localhost:3307/app?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&createDatabaseIfNotExist=true
 
   kafka:
     create-topics: true
@@ -13,7 +15,7 @@ app:
 #      driver-class-name: com.mysql.jdbc.Driver
 #      username: root
 #      password: root
-#      url: jdbc:mysql://localhost:3307/asio_jobs?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+#      url: jdbc:mysql://localhost:3307/app?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
 
 ## Actuator
 management:
