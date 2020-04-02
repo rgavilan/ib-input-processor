@@ -15,6 +15,7 @@ import es.um.asio.domain.exitStatus.ExitStatus;
 import es.um.asio.domain.importResult.ImportResult;
 import es.um.asio.inputprocessor.kafka.service.ServiceRedirectorService;
 import es.um.asio.inputprocessor.service.service.DatasetService;
+import es.um.asio.inputprocessor.service.service.KafkaService;
 
 /**
  * Input message listener.
@@ -30,6 +31,10 @@ public class InputListener {
     /** The service redirector service. */
     @Autowired
     private ServiceRedirectorService serviceRedirectorService;
+    
+    /** The kafka service. */
+    @Autowired
+    private KafkaService kafkaService;
 
     /**
      * Method listening input topic name.
@@ -49,11 +54,13 @@ public class InputListener {
             incomingData = new ImportResult((ExitStatus)incomingData);
         }
         
-        DatasetService repository = serviceRedirectorService.redirect(incomingData);
-        if (repository != null) {
+        DatasetService service = serviceRedirectorService.redirect(incomingData);
+        if (service != null) {
             logger.debug("Saving {} into DB {}", incomingData.getClass(), data);
-            repository.save(incomingData);
+            service.save(incomingData);
         }
+        
+        kafkaService.sendGeneralDataTopic(data);
     }
 
 }
