@@ -18,6 +18,7 @@ app:
     input-topic-name: input-data
     general-topic-name: general-data
     create-topics: false
+    send-general-data-topic: true
 
 # Spring configuration
 spring:

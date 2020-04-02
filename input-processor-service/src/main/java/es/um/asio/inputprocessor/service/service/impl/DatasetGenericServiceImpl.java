@@ -22,6 +22,9 @@ public class DatasetGenericServiceImpl implements DatasetGenericService {
 	@Autowired
 	private KafkaTemplate<String, DataSetDataBase> kafkaTemplate;
 	
+	@Value("${app.kafka.send-general-data-topic}")
+	private Boolean sendGeneralDataTopic;
+	
 	/**
 	 * Topic name
 	 */
@@ -40,7 +43,9 @@ public class DatasetGenericServiceImpl implements DatasetGenericService {
     @Override
     public DataSetDataBase save(DataSetDataBase data) {
     	
-    	kafkaTemplate.send(topicName, data);
+    	if (sendGeneralDataTopic) {
+    		kafkaTemplate.send(topicName, data);    		
+    	}
     	
         return datasetGenericRepository.save(data);
     }
