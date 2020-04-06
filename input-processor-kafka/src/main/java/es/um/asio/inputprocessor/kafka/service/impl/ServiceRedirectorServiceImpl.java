@@ -98,7 +98,7 @@ public class ServiceRedirectorServiceImpl implements ServiceRedirectorService {
         if(datasetService == null) {
             return datasetGenericService;
         }
-        return datasetGenericService;
+        return datasetService;
     }
 
 }
