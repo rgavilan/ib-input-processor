@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import es.um.asio.domain.DataSetData;
+import es.um.asio.domain.cvn.CvnRootBean;
 import es.um.asio.domain.importResult.ImportResult;
 import es.um.asio.domain.gruposInvestigacion.DatosContactoGrupo;
 import es.um.asio.domain.gruposInvestigacion.GrupoInvestigacion;
@@ -24,6 +25,7 @@ import es.um.asio.inputprocessor.service.service.InvestigationGroupService;
 import es.um.asio.inputprocessor.service.service.PlannedJustificationsProjectService;
 import es.um.asio.inputprocessor.service.service.ProjectOriginsService;
 import es.um.asio.inputprocessor.service.service.ProjectService;
+import es.um.asio.inputprocessor.service.service.CvnRootBeanService;
 import es.um.asio.inputprocessor.service.service.DatasetGenericService;
 import es.um.asio.inputprocessor.service.service.DatasetService;
 
@@ -61,6 +63,10 @@ public class ServiceRedirectorServiceImpl implements ServiceRedirectorService {
     @Autowired
     private ImportResultService importResultService;
     
+    /** The cvn root bean service. */
+    @Autowired
+    private CvnRootBeanService cvnRootBeanService;
+    
     /** 
      * The dataset generic service. 
      * */
@@ -83,6 +89,7 @@ public class ServiceRedirectorServiceImpl implements ServiceRedirectorService {
         doByClass.put(GrupoInvestigacion.class, investigationGroupService);
         doByClass.put(DatosContactoGrupo.class, groupContactDataService);
         doByClass.put(ImportResult.class, importResultService);
+        doByClass.put(CvnRootBean.class, cvnRootBeanService);
     }
 
    
@@ -98,7 +105,7 @@ public class ServiceRedirectorServiceImpl implements ServiceRedirectorService {
         if(datasetService == null) {
             return datasetGenericService;
         }
-        return datasetGenericService;
+        return datasetService;
     }
 
 }
