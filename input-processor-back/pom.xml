@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>es.um.asio</groupId>
 		<artifactId>input-processor</artifactId>
-		<version>1.0-SNAPSHOT</version>
+		<version>1.0-SEMANTMURC-115-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>input-processor-back</artifactId>
@@ -17,14 +17,13 @@
 
 	<properties>
 		<artifact.packaging>war</artifact.packaging>
-		<asio-abstractions.version>1.0-SNAPSHOT</asio-abstractions.version>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>es.um.asio</groupId>
 			<artifactId>input-processor-service</artifactId>
-			<version>1.0-SNAPSHOT</version>
+			<version>1.0-SEMANTMURC-115-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
