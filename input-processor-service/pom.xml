@@ -92,6 +92,18 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		
+		<!-- Izertis dependencies -->
+		
+		<dependency>
+			<groupId>com.izertis.libraries</groupId>
+			<artifactId>izertis-jpa-abstractions</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.izertis.libraries</groupId>
+			<artifactId>izertis-service-abstractions</artifactId>
+		</dependency>
 
 		<!-- Testing -->
 
