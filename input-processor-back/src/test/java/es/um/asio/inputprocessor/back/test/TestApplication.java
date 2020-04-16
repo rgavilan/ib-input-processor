@@ -1,4 +1,4 @@
-package es.um.asio.back.test;
+package es.um.asio.inputprocessor.back.test;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Import;
 
 @SpringBootApplication
 @EnableAutoConfiguration
-//@Import(MapperConfig.class)
 public class TestApplication {
     /**
      * Main method for embedded deployment.
