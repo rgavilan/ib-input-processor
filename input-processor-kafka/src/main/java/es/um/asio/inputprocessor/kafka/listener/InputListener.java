@@ -11,8 +11,6 @@ import org.springframework.stereotype.Component;
 import es.um.asio.domain.DataSetData;
 import es.um.asio.domain.DataSetDataBase;
 import es.um.asio.domain.InputData;
-import es.um.asio.domain.importResult.ExitStatus;
-import es.um.asio.domain.importResult.ImportResult;
 import es.um.asio.inputprocessor.kafka.service.ServiceRedirectorService;
 import es.um.asio.inputprocessor.service.service.DatasetService;
 import es.um.asio.inputprocessor.service.service.KafkaService;
@@ -50,9 +48,6 @@ public class InputListener {
         }
 
         DataSetDataBase incomingData = (DataSetDataBase) data.getData();
-        if(incomingData instanceof ExitStatus) {
-            incomingData = new ImportResult((ExitStatus)incomingData);
-        }
         
         DatasetService service = serviceRedirectorService.redirect(incomingData);
         if (service != null) {

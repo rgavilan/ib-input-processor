@@ -26,6 +26,7 @@
 	<modules>
 		<module>input-processor-kafka</module>
 		<module>input-processor-service</module>
+		<module>input-processor-back</module>
 	</modules>
 
 	<dependencyManagement>
