@@ -57,9 +57,6 @@ public interface ImportResultMapper extends BaseMapper<ImportResult, ImportResul
      *            the DTO
      * @return the entity.
      */
-    @Mapping(target = "endTime", ignore = true)
-    @Mapping(target = "exitStatusCode", ignore = true)
-    @Mapping(target = "jobType", ignore = true)
     @InheritInverseConfiguration
     @Override
     ImportResult convertFromDto(ImportResultDto dto);
@@ -81,11 +78,6 @@ public interface ImportResultMapper extends BaseMapper<ImportResult, ImportResul
      * @param entity
      *            the entity
      * @return the entity
-     */
-    @Mapping(target = "entityId", ignore = true)
-    @Mapping(target = "version", ignore = true)
-    @Mapping(target = "endTime", ignore = true)
-    @Mapping(target = "exitStatusCode", ignore = true)
-    @Mapping(target = "jobType", ignore = true)
+     */  
     ImportResult updateFromDto(ImportResultDto dto, @MappingTarget ImportResult entity);
 }
