@@ -11,7 +11,10 @@ import javax.persistence.criteria.Root;
 import com.izertis.abstractions.filter.AbstractJpaSpecification;
 import com.izertis.abstractions.filter.EntityFilter;
 
+import es.um.asio.domain.importResult.ExitStatusCode;
 import es.um.asio.domain.importResult.ImportResult;
+import es.um.asio.domain.importResult.ImportResult_;
+import es.um.asio.domain.importResult.JobType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -29,6 +32,15 @@ public class ImportResultFilter extends AbstractJpaSpecification<ImportResult> i
      */
     private static final long serialVersionUID = 6371198455272564828L;
 
+    /**
+     * JobType
+     */
+    private JobType jobType;
+    
+    /**
+     *  ExitStatusCode
+    */
+    private ExitStatusCode exitStatusCode;
  
     /**
      * {@inheritDoc}
@@ -39,6 +51,13 @@ public class ImportResultFilter extends AbstractJpaSpecification<ImportResult> i
 
         final List<Predicate> predicates = new ArrayList<>();
 
+        if (this.jobType != null) {
+            predicates.add(this.createEquals(root, criteriaBuilder, ImportResult_.JOB_TYPE, this.jobType));
+        }
+        
+        if (this.exitStatusCode != null) {
+            predicates.add(this.createEquals(root, criteriaBuilder, ImportResult_.EXIT_STATUS_CODE, this.exitStatusCode));
+        }
        
         return criteriaBuilder.and(predicates.stream().toArray(Predicate[]::new));
     }
