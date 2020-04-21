@@ -23,12 +23,6 @@ app:
       show-sql: false
       properties:
         hibernate.temp.use_jdbc_metadata_defaults: false
-        
-  kafka:
-    input-topic-name: input-data
-    general-topic-name: general-data
-    create-topics: false
-    send-general-data-topic: false
     
   # Cache configuration
   cache:

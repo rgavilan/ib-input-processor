@@ -11,9 +11,9 @@ import org.springframework.stereotype.Component;
 import es.um.asio.domain.DataSetData;
 import es.um.asio.domain.DataSetDataBase;
 import es.um.asio.domain.InputData;
+import es.um.asio.inputprocessor.kafka.service.KafkaService;
 import es.um.asio.inputprocessor.kafka.service.ServiceRedirectorService;
 import es.um.asio.inputprocessor.service.service.DatasetService;
-import es.um.asio.inputprocessor.service.service.KafkaService;
 
 /**
  * Input message listener.

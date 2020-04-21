@@ -1,4 +1,4 @@
-package es.um.asio.inputprocessor.service.service.impl;
+package es.um.asio.inputprocessor.kafka.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -7,17 +7,19 @@ import org.springframework.stereotype.Service;
 
 import es.um.asio.domain.DataSetData;
 import es.um.asio.domain.InputData;
-import es.um.asio.inputprocessor.service.service.KafkaService;
-
+import es.um.asio.inputprocessor.kafka.service.KafkaService;
+ 
+/**
+ * The Class KafkaServiceImpl.
+ */
 @Service
 public class KafkaServiceImpl implements KafkaService {
-
-	
-/**
- * Topic name
- */
-@Value("${app.kafka.general-topic-name}")
-private String topicName;
+    	
+    /**
+     * Topic name
+     */
+    @Value("${app.kafka.general-topic-name}")
+    private String topicName;
 
 	/**
 	 * Kafka template.
@@ -25,6 +27,9 @@ private String topicName;
 	@Autowired
 	private KafkaTemplate<String, InputData<DataSetData>> kafkaTemplate;
 	
+	/** 
+	 * The send general data topic.
+	 *  */
 	@Value("${app.kafka.send-general-data-topic}")
 	private Boolean sendGeneralDataTopic;
 	

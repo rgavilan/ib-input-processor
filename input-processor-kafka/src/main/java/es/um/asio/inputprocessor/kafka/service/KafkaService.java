@@ -1,4 +1,4 @@
-package es.um.asio.inputprocessor.service.service;
+package es.um.asio.inputprocessor.kafka.service;
 
 import es.um.asio.domain.DataSetData;
 import es.um.asio.domain.InputData;
