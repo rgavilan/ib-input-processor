@@ -43,18 +43,15 @@ public class InputListener {
     @KafkaListener(topics = "#{'${app.kafka.input-topic-name}'.split(',')}", containerFactory = "inputKafkaListenerContainerFactory")
     public void listen(final InputData<DataSetData> data) {
 
-        if (this.logger.isDebugEnabled()) {
-            this.logger.debug("Received message: {}", data);
-        }
-
         DataSetDataBase incomingData = (DataSetDataBase) data.getData();
         
         DatasetService service = serviceRedirectorService.redirect(incomingData);
         if (service != null) {
-            logger.debug("Saving {} into DB {}", incomingData.getClass(), data);
+            logger.info("Saving {} into DB {}", incomingData.getClass(), data);
             service.save(incomingData);
         }
         
+        logger.info("Send data to general kafka topic: {}", data);
         kafkaService.sendGeneralDataTopic(data);
     }
 
