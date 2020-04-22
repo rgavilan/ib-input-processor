@@ -85,17 +85,17 @@
 					<artifactId>spring-boot-starter-tomcat</artifactId>
 					<scope>compile</scope>
 				</dependency>
-				
+
 				<dependency>
 					<groupId>org.mariadb.jdbc</groupId>
-      				<artifactId>mariadb-java-client</artifactId>
+					<artifactId>mariadb-java-client</artifactId>
 				</dependency>
-				
+
 				<dependency>
 					<groupId>mysql</groupId>
 					<artifactId>mysql-connector-java</artifactId>
 				</dependency>
-				
+
 			</dependencies>
 
 			<build>

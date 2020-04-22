@@ -70,7 +70,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.kafka</groupId>
 			<artifactId>spring-kafka</artifactId>
@@ -81,10 +81,10 @@
 			<artifactId>lombok</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.mariadb.jdbc</groupId>
-      		<artifactId>mariadb-java-client</artifactId>
+			<artifactId>mariadb-java-client</artifactId>
 			<exclusions>
 				<exclusion>
 					<artifactId>hsqldb</artifactId>
@@ -92,19 +92,19 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		
+
 		<dependency>
-            <groupId>org.mapstruct</groupId>
-            <artifactId>mapstruct</artifactId>
-        </dependency>
-		
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct</artifactId>
+		</dependency>
+
 		<!-- Izertis dependencies -->
-		
+
 		<dependency>
 			<groupId>com.izertis.libraries</groupId>
 			<artifactId>izertis-jpa-abstractions</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.izertis.libraries</groupId>
 			<artifactId>izertis-service-abstractions</artifactId>
@@ -122,15 +122,15 @@
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<scope>test</scope>
-		</dependency>	
-		
-		<dependency>
-		    <groupId>org.jeasy</groupId>
-		    <artifactId>easy-random-core</artifactId>
-		    <version>4.2.0</version>		    
-		    <scope>test</scope>
 		</dependency>
-		
+
+		<dependency>
+			<groupId>org.jeasy</groupId>
+			<artifactId>easy-random-core</artifactId>
+			<version>4.2.0</version>
+			<scope>test</scope>
+		</dependency>
+
 	</dependencies>
 
 
