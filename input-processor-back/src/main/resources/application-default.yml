@@ -24,3 +24,5 @@ management:
   health:
     redis:
       enabled: false
+  server:
+    port: 9322	
