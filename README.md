@@ -40,7 +40,17 @@ La aplicación está preparada para funcionar con JDK 11. En caso de necesitar t
 </properties>
 ```
 
-Para descargar JDK 11, se precisa utilizar openjdk, la cual se puede obtener de https://jdk.java.net/11/
+## Enviar mensajes a general-data 
+
+Si queremos saltarnos el proceso ETL y mandar directamente los datos processados de la cola *input-data* a *general-data* basta con configurar
+la propiedad send-general-data-topic a true, false en caso contrario.
+
+```xml 
+app:
+  kafka:
+    send-general-data-topic: true
+```
+
 
 ## Instalación en entorno real
 
