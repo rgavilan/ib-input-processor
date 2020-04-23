@@ -11,7 +11,6 @@
 	</parent>
 
 	<artifactId>input-processor-kafka</artifactId>
-	<packaging>${artifact.packaging}</packaging>
 	<name>UM - ASIO - input-processor-kafka</name>
 	<description>UM - ASIO - input-processor-kafka</description>
 
@@ -73,49 +72,5 @@
 		</dependency>
 	</dependencies>
 
-	<profiles>
-		<profile>
-			<id>spring-boot</id>
-
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-
-			<properties>
-				<artifact.packaging>jar</artifact.packaging>
-			</properties>
-
-			<dependencies>
-				<dependency>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-starter-tomcat</artifactId>
-					<scope>compile</scope>
-				</dependency>
-
-				<dependency>
-					<groupId>org.mariadb.jdbc</groupId>
-					<artifactId>mariadb-java-client</artifactId>
-				</dependency>
-
-				<dependency>
-					<groupId>mysql</groupId>
-					<artifactId>mysql-connector-java</artifactId>
-				</dependency>
-			</dependencies>
-
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.springframework.boot</groupId>
-						<artifactId>spring-boot-maven-plugin</artifactId>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-
-		<profile>
-			<id>tomcat</id>
-		</profile>
-	</profiles>
 
 </project>

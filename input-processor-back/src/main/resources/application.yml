@@ -23,6 +23,24 @@ app:
       show-sql: false
       properties:
         hibernate.temp.use_jdbc_metadata_defaults: false
+        
+  kafka:
+    input-topic-name: input-data
+    general-topic-name: general-data
+    create-topics: false
+    send-general-data-topic: true
+    
+# Spring configuration
+spring:
+  kafka:
+    bootstrap-servers:
+      - localhost:29092
+    consumer:
+      bootstrap-servers:
+        - localhost:29092
+      group-id: input-processor
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
     
   # Cache configuration
   cache:

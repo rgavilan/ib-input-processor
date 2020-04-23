@@ -14,6 +14,10 @@ app:
       show-sql: true
     datasource:
       url: jdbc:mysql://localhost:3307/app?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&createDatabaseIfNotExist=true
+
+
+  kafka:
+    create-topics: true
     
 ## Actuator
 management:
