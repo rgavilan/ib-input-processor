@@ -50,6 +50,7 @@ public class InputListener {
         DatasetService service = serviceRedirectorService.redirect(incomingData);
         if (service != null) {
             logger.info("Saving {} into DB {}", incomingData.getClass(), data);
+            logger.info("GRAYLOG-IP Importado objeto de tipo: " + incomingData.getClass().getSimpleName());
             service.save(incomingData);
         }
         
