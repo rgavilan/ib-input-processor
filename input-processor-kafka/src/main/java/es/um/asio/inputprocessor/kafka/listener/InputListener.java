@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import es.um.asio.domain.DataSetData;
 import es.um.asio.domain.DataSetDataBase;
 import es.um.asio.domain.InputData;
+import es.um.asio.domain.importResult.ImportResult;
 import es.um.asio.inputprocessor.kafka.service.KafkaService;
 import es.um.asio.inputprocessor.kafka.service.ServiceRedirectorService;
 import es.um.asio.inputprocessor.service.service.DatasetService;
@@ -40,6 +41,7 @@ public class InputListener {
      * @param data
      *            the data
      */
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     @KafkaListener(topics = "#{'${app.kafka.input-topic-name}'.split(',')}", containerFactory = "inputKafkaListenerContainerFactory")
     public void listen(final InputData<DataSetData> data) {
 
@@ -51,8 +53,10 @@ public class InputListener {
             service.save(incomingData);
         }
         
-        logger.info("Send data to general kafka topic: {}", data);
-        kafkaService.sendGeneralDataTopic(data);
+        if(!(incomingData instanceof ImportResult)) {
+            logger.info("Send data to general kafka topic: {}", data);
+            kafkaService.sendGeneralDataTopic(data);
+        }       
     }
 
 }
