@@ -39,7 +39,7 @@ public class KafkaServiceImpl implements KafkaService {
     @Override
     public void sendGeneralDataTopic(InputData<DataSetData> data) {
     	if (sendGeneralDataTopic) {
-    		kafkaTemplate.send(topicName, data);    		
+    		kafkaTemplate.send(topicName, 1, "general-data-set", data);
     	}
     }
 }
