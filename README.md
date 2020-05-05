@@ -68,3 +68,7 @@ Será preciso configurar las siguientes variables de entorno cuando se instale e
 |`APP_PERSISTENCE_DATASOURCE_PASSWORD`|Contraseña del usuario de acceso a la base de datos| |
 |`APP_PERSISTENCE_DATASOURCE_URL`|URL de acceso a la base de datos MariaDB|jdbc:mysql://localhost:3307/app?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&createDatabaseIfNotExist=true|
 |`APP_KAFKA_SEND_GENERAL_DATA_TOPIC`|Flag que indica si se deben enviar los datos a la siguiente cola sin pasar por ETL. Valores admisibles `true` y `false`|true|
+|`APP_SERVICES_ETL_ENDPOINT`| URL del servicio para invocar el proceso ETL | http://localhost:8080/kettle/runJob |
+|`APP_SERVICES_ETL_JOB`| Nombre del job que se invocará al hacer la llamada al proceso ETL | main |
+|`APP_SERVICES_ETL_PATH`| Path del repositorio de Pentaho |  |
+
