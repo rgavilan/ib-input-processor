@@ -27,7 +27,7 @@ app:
     etl:
       endpoint: http://localhost:8080/kettle/runJob
       job: main
-      path: C:\Users\JRUANOVA\Desktop\Proyectos\12.ASIO-UM\ETL\project\0.config\
+      path: 
         
   kafka:
     input-topic-name: input-data
