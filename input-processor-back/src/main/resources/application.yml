@@ -31,7 +31,7 @@ app:
         
   kafka:
     input-topic-name: input-data
-    general-topic-name: general-data
+    general-contingency-topic-name: general-contingency-data
     create-topics: false
     send-general-data-topic: true
     

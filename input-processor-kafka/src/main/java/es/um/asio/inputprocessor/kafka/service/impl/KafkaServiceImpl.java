@@ -18,7 +18,7 @@ public class KafkaServiceImpl implements KafkaService {
     /**
      * Topic name
      */
-    @Value("${app.kafka.general-topic-name}")
+    @Value("${app.kafka.general-contingency-topic-name}")
     private String topicName;
 
 	/**
@@ -39,7 +39,7 @@ public class KafkaServiceImpl implements KafkaService {
     @Override
     public void sendGeneralDataTopic(InputData<DataSetData> data) {
     	if (sendGeneralDataTopic) {
-    		kafkaTemplate.send(topicName, 1, "general-data-set", data);
+    		kafkaTemplate.send(topicName, data);
     	}
     }
 }
