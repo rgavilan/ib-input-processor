@@ -8,10 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
+import es.um.asio.abstractions.domain.ExitStatusCode;
 import es.um.asio.domain.DataSetData;
 import es.um.asio.domain.DataSetDataBase;
 import es.um.asio.domain.InputData;
 import es.um.asio.domain.importResult.ImportResult;
+import es.um.asio.inputprocessor.kafka.service.ETLService;
 import es.um.asio.inputprocessor.kafka.service.KafkaService;
 import es.um.asio.inputprocessor.kafka.service.ServiceRedirectorService;
 import es.um.asio.inputprocessor.service.service.DatasetService;
@@ -34,6 +36,10 @@ public class InputListener {
     /** The kafka service. */
     @Autowired
     private KafkaService kafkaService;
+    
+    /** The ETL service. */
+    @Autowired
+    private ETLService etlService;
 
     /**
      * Method listening input topic name.
@@ -57,7 +63,12 @@ public class InputListener {
         if(!(incomingData instanceof ImportResult)) {
             logger.info("Send data to general kafka topic: {}", data);
             kafkaService.sendGeneralDataTopic(data);
-        }       
+        }             
+
+        if(incomingData instanceof ImportResult && ((ImportResult)incomingData).getExitStatusCode() == ExitStatusCode.COMPLETED) {
+            logger.info("Running ETL service");
+            etlService.run();
+        }
     }
 
 }

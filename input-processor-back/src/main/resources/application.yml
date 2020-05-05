@@ -23,6 +23,11 @@ app:
       show-sql: false
       properties:
         hibernate.temp.use_jdbc_metadata_defaults: false
+  services:    
+    etl:
+      endpoint: http://localhost:8080/kettle/runJob
+      job: main
+      path: C:\Users\JRUANOVA\Desktop\Proyectos\12.ASIO-UM\ETL\project\0.config\
         
   kafka:
     input-topic-name: input-data
