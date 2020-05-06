@@ -4,10 +4,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import java.util.Base64;
 
 import es.um.asio.inputprocessor.kafka.model.ETLJobResponse;
 import es.um.asio.inputprocessor.kafka.service.ETLService;
@@ -47,6 +51,18 @@ public class ETLServiceImpl implements ETLService {
     @Value("${app.services.etl.version}")
     private String version;
     
+    /** 
+     * The ETL username.
+    */
+    @Value("${app.services.etl.username}")
+    private String username;    
+    
+    /** 
+     * The ETL password.
+    */
+    @Value("${app.services.etl.password}")
+    private String password;
+    
     
     /**
      * Run ETL job.
@@ -59,7 +75,7 @@ public class ETLServiceImpl implements ETLService {
         String url = endPoint.concat("/?job=").concat(job).concat("&version=").concat(version);
 
         try {
-            ResponseEntity<ETLJobResponse> response = restTemplate.getForEntity(url, ETLJobResponse.class);
+            ResponseEntity<ETLJobResponse> response = restTemplate.exchange(url, HttpMethod.GET, new HttpEntity<ETLJobResponse>(createBasicAuthenticationHeader()), ETLJobResponse.class);
             etlJobResponse = response.getBody();
             if (response.getStatusCode() == HttpStatus.OK && etlJobResponse != null && etlJobResponse.getResult().equals("OK")) {
                 logger.info("The ETL job {} has been ran successfully {}", url, response.toString());
@@ -72,6 +88,17 @@ public class ETLServiceImpl implements ETLService {
         }
 
         return etlJobResponse;
+    }
+    
+    /**
+     * Creates the basic authentication header.
+     *
+     * @return the http headers
+     */
+    private HttpHeaders createBasicAuthenticationHeader() {
+        HttpHeaders authHeaders = new HttpHeaders();
+        authHeaders.set("Authorization", "Basic " + Base64.getEncoder().encodeToString((username + ":" + password).getBytes()));   
+        return authHeaders;
     }
     
 

@@ -3,6 +3,7 @@ package es.um.asio.inputprocessor.kafka.service;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.header;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withServerError;
@@ -52,6 +53,8 @@ public class ETLServiceTest {
         ReflectionTestUtils.setField(etlService, "endPoint", "http://localhost:8080/kettle/runJob");
         ReflectionTestUtils.setField(etlService, "job", "dummyJob");
         ReflectionTestUtils.setField(etlService, "version", "dummyVersion");
+        ReflectionTestUtils.setField(etlService, "username", "dummyUser");
+        ReflectionTestUtils.setField(etlService, "password", "dummyPassword");
         mockServer = MockRestServiceServer.createServer(restTemplate);
     }
     
@@ -61,6 +64,7 @@ public class ETLServiceTest {
         mockServer.expect(ExpectedCount.once(),
                 requestTo("http://localhost:8080/kettle/runJob/?job=dummyJob&version=dummyVersion"))
                 .andExpect(method(HttpMethod.GET))
+                .andExpect(header("Authorization","Basic ZHVtbXlVc2VyOmR1bW15UGFzc3dvcmQ="))
                 .andRespond(withSuccess(givenAETLJobResponse(),MediaType.TEXT_XML));  
         
         ETLJobResponse result = etlService.run();
@@ -75,6 +79,7 @@ public class ETLServiceTest {
         mockServer.expect(ExpectedCount.once(),
                 requestTo("http://localhost:8080/kettle/runJob/?job=dummyJob&version=dummyVersion"))
                 .andExpect(method(HttpMethod.GET))
+                .andExpect(header("Authorization","Basic ZHVtbXlVc2VyOmR1bW15UGFzc3dvcmQ="))
                 .andRespond(withServerError());
         
         ETLJobResponse result = etlService.run();

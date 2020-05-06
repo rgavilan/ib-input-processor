@@ -28,6 +28,8 @@ app:
       endpoint: http://localhost:8080/kettle/runJob
       job: main
       version: 
+      username:
+      password:
         
   kafka:
     input-topic-name: input-data
