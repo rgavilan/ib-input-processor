@@ -70,5 +70,7 @@ Será preciso configurar las siguientes variables de entorno cuando se instale e
 |`APP_KAFKA_SEND_GENERAL_DATA_TOPIC`|Flag que indica si se deben enviar los datos a la siguiente cola sin pasar por ETL. Valores admisibles `true` y `false`|true|
 |`APP_SERVICES_ETL_ENDPOINT`| URL del servicio para invocar el proceso ETL | http://localhost:8080/kettle/runJob |
 |`APP_SERVICES_ETL_JOB`| Nombre del job que se invocará al hacer la llamada al proceso ETL | main |
-|`APP_SERVICES_ETL_PATH`| Path del repositorio de Pentaho |  |
+|`APP_SERVICES_ETL_VERSION`| Versión BBDD|  |
+|`APP_SERVICES_ETL_USERNAME`| Nombre de usuario para invocar el proceso ETL | asioetl |
+|`APP_SERVICES_ETL_PASSWORD`| Contraseña para invocar el proceso ETL | asioetl |
 
