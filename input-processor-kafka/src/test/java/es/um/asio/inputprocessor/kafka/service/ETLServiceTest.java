@@ -51,7 +51,7 @@ public class ETLServiceTest {
     public void setUp() {
         ReflectionTestUtils.setField(etlService, "endPoint", "http://localhost:8080/kettle/runJob");
         ReflectionTestUtils.setField(etlService, "job", "dummyJob");
-        ReflectionTestUtils.setField(etlService, "path", "dummyPath");
+        ReflectionTestUtils.setField(etlService, "version", "dummyVersion");
         mockServer = MockRestServiceServer.createServer(restTemplate);
     }
     
@@ -59,7 +59,7 @@ public class ETLServiceTest {
     @Test
     public void whenRunETL_AndServerReturnsOK_thenReturnsETLJobResult() {          
         mockServer.expect(ExpectedCount.once(),
-                requestTo("http://localhost:8080/kettle/runJob/?job=dummyJob&param_path=dummyPath"))
+                requestTo("http://localhost:8080/kettle/runJob/?job=dummyJob&version=dummyVersion"))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withSuccess(givenAETLJobResponse(),MediaType.TEXT_XML));  
         
@@ -73,7 +73,7 @@ public class ETLServiceTest {
     @Test
     public void whenRunETL_AndServerReturnsError_thenReturnsNull() {          
         mockServer.expect(ExpectedCount.once(),
-                requestTo("http://localhost:8080/kettle/runJob/?job=dummyJob&param_path=dummyPath"))
+                requestTo("http://localhost:8080/kettle/runJob/?job=dummyJob&version=dummyVersion"))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withServerError());
         

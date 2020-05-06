@@ -27,7 +27,7 @@ app:
     etl:
       endpoint: http://localhost:8080/kettle/runJob
       job: main
-      path: 
+      version: 
         
   kafka:
     input-topic-name: input-data

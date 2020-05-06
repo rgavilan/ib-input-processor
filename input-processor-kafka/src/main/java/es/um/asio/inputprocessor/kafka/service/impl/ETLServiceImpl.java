@@ -44,8 +44,8 @@ public class ETLServiceImpl implements ETLService {
     /** 
      * The ETL path.
     */
-    @Value("${app.services.etl.path}")
-    private String path;
+    @Value("${app.services.etl.version}")
+    private String version;
     
     
     /**
@@ -56,7 +56,7 @@ public class ETLServiceImpl implements ETLService {
     @Override
     public ETLJobResponse run() {
         ETLJobResponse etlJobResponse = null;
-        String url = endPoint.concat("/?job=").concat(job).concat("&param_path=").concat(path);
+        String url = endPoint.concat("/?job=").concat(job).concat("&version=").concat(version);
 
         try {
             ResponseEntity<ETLJobResponse> response = restTemplate.getForEntity(url, ETLJobResponse.class);
