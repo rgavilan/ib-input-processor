@@ -52,7 +52,6 @@ public class ETLServiceTest {
     public void setUp() {
         ReflectionTestUtils.setField(etlService, "endPoint", "http://localhost:8080/kettle/runJob");
         ReflectionTestUtils.setField(etlService, "job", "dummyJob");
-        ReflectionTestUtils.setField(etlService, "version", "dummyVersion");
         ReflectionTestUtils.setField(etlService, "username", "dummyUser");
         ReflectionTestUtils.setField(etlService, "password", "dummyPassword");
         mockServer = MockRestServiceServer.createServer(restTemplate);
@@ -62,12 +61,12 @@ public class ETLServiceTest {
     @Test
     public void whenRunETL_AndServerReturnsOK_thenReturnsETLJobResult() {          
         mockServer.expect(ExpectedCount.once(),
-                requestTo("http://localhost:8080/kettle/runJob/?job=dummyJob&version=dummyVersion"))
+                requestTo("http://localhost:8080/kettle/runJob/?job=dummyJob&version=25"))
                 .andExpect(method(HttpMethod.GET))
                 .andExpect(header("Authorization","Basic ZHVtbXlVc2VyOmR1bW15UGFzc3dvcmQ="))
                 .andRespond(withSuccess(givenAETLJobResponse(),MediaType.TEXT_XML));  
         
-        ETLJobResponse result = etlService.run();
+        ETLJobResponse result = etlService.run(25);
         
         mockServer.verify();        
         assertNotNull(result);
@@ -77,12 +76,12 @@ public class ETLServiceTest {
     @Test
     public void whenRunETL_AndServerReturnsError_thenReturnsNull() {          
         mockServer.expect(ExpectedCount.once(),
-                requestTo("http://localhost:8080/kettle/runJob/?job=dummyJob&version=dummyVersion"))
+                requestTo("http://localhost:8080/kettle/runJob/?job=dummyJob&version=25"))
                 .andExpect(method(HttpMethod.GET))
                 .andExpect(header("Authorization","Basic ZHVtbXlVc2VyOmR1bW15UGFzc3dvcmQ="))
                 .andRespond(withServerError());
         
-        ETLJobResponse result = etlService.run();
+        ETLJobResponse result = etlService.run(25);
         
         mockServer.verify();        
         assertNull(result);

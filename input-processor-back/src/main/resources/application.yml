@@ -27,7 +27,6 @@ app:
     etl:
       endpoint: http://localhost:8080/kettle/runJob
       job: main
-      version: 
       username: asioetl
       password: asioetl
         

@@ -43,14 +43,8 @@ public class ETLServiceImpl implements ETLService {
      * The ETL job.
     */
     @Value("${app.services.etl.job}")
-    private String job;    
-    
-    /** 
-     * The ETL path.
-    */
-    @Value("${app.services.etl.version}")
-    private String version;
-    
+    private String job;
+
     /** 
      * The ETL username.
     */
@@ -67,12 +61,13 @@ public class ETLServiceImpl implements ETLService {
     /**
      * Run ETL job.
      *
+     * @param version the version
      * @return the ETL job response
      */
     @Override
-    public ETLJobResponse run() {
+    public ETLJobResponse run(long version) {
         ETLJobResponse etlJobResponse = null;
-        String url = endPoint.concat("/?job=").concat(job).concat("&version=").concat(version);
+        String url = endPoint.concat("/?job=").concat(job).concat("&version=").concat(String.valueOf(version));
 
         try {
             ResponseEntity<ETLJobResponse> response = restTemplate.exchange(url, HttpMethod.GET, new HttpEntity<ETLJobResponse>(createBasicAuthenticationHeader()), ETLJobResponse.class);

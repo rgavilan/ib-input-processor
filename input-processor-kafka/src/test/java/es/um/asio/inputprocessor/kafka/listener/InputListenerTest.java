@@ -85,7 +85,7 @@ public class InputListenerTest {
         
         inputListener.listen(importResultData);
         
-        verify(etlService).run();
+        verify(etlService).run(Mockito.anyLong());
     }
     
     @Test
@@ -95,7 +95,7 @@ public class InputListenerTest {
         
         inputListener.listen(importResultData);
         
-        verify(etlService, never()).run();
+        verify(etlService, never()).run(Mockito.anyLong());
     }
     
     @Test
@@ -104,7 +104,7 @@ public class InputListenerTest {
         
         inputListener.listen(inputData);
         
-        verify(etlService, never()).run();
+        verify(etlService, never()).run(Mockito.anyLong());
     }
     
     private InputData<DataSetData> givenAnInputData(){

@@ -9,8 +9,9 @@ public interface ETLService {
     
     /**
      * Run ETL job.
+     * @param version 
      *
      * @return the ETL job response
      */
-    ETLJobResponse run();
+    ETLJobResponse run(long version);
 }

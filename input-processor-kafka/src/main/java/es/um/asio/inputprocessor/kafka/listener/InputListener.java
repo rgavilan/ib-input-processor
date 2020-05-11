@@ -67,7 +67,7 @@ public class InputListener {
 
         if(incomingData instanceof ImportResult && ((ImportResult)incomingData).getExitStatusCode() == ExitStatusCode.COMPLETED) {
             logger.info("Running ETL service");
-            etlService.run();
+            etlService.run(((ImportResult)incomingData).getVersion());
         }
     }
 
