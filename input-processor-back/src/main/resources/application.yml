@@ -25,7 +25,7 @@ app:
         hibernate.temp.use_jdbc_metadata_defaults: false
   services:    
     etl:
-      endpoint: http://localhost:8080/kettle/runJob
+      endpoint: http://localhost:8383/kettle/runJob
       job: main
       username: asioetl
       password: asioetl

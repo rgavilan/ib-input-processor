@@ -50,10 +50,10 @@ public class ETLServiceTest {
     
     @Before
     public void setUp() {
-        ReflectionTestUtils.setField(etlService, "endPoint", "http://localhost:8080/kettle/runJob");
-        ReflectionTestUtils.setField(etlService, "job", "dummyJob");
-        ReflectionTestUtils.setField(etlService, "username", "dummyUser");
-        ReflectionTestUtils.setField(etlService, "password", "dummyPassword");
+        ReflectionTestUtils.setField(etlService, "endPoint", "http://localhost:8383/kettle/runJob");
+        ReflectionTestUtils.setField(etlService, "job", "main");
+        ReflectionTestUtils.setField(etlService, "username", "asioetl");
+        ReflectionTestUtils.setField(etlService, "password", "asioetl");
         mockServer = MockRestServiceServer.createServer(restTemplate);
     }
     
@@ -61,12 +61,12 @@ public class ETLServiceTest {
     @Test
     public void whenRunETL_AndServerReturnsOK_thenReturnsETLJobResult() {          
         mockServer.expect(ExpectedCount.once(),
-                requestTo("http://localhost:8080/kettle/runJob/?job=dummyJob&version=25"))
+                requestTo("http://localhost:8383/kettle/runJob/?job=main&version=37"))
                 .andExpect(method(HttpMethod.GET))
-                .andExpect(header("Authorization","Basic ZHVtbXlVc2VyOmR1bW15UGFzc3dvcmQ="))
+                .andExpect(header("Authorization","Basic YXNpb2V0bDphc2lvZXRs"))
                 .andRespond(withSuccess(givenAETLJobResponse(),MediaType.TEXT_XML));  
         
-        ETLJobResponse result = etlService.run(25);
+        ETLJobResponse result = etlService.run(37);
         
         mockServer.verify();        
         assertNotNull(result);
@@ -76,12 +76,12 @@ public class ETLServiceTest {
     @Test
     public void whenRunETL_AndServerReturnsError_thenReturnsNull() {          
         mockServer.expect(ExpectedCount.once(),
-                requestTo("http://localhost:8080/kettle/runJob/?job=dummyJob&version=25"))
+                requestTo("http://localhost:8383/kettle/runJob/?job=main&version=37"))
                 .andExpect(method(HttpMethod.GET))
-                .andExpect(header("Authorization","Basic ZHVtbXlVc2VyOmR1bW15UGFzc3dvcmQ="))
+                .andExpect(header("Authorization","Basic YXNpb2V0bDphc2lvZXRs"))
                 .andRespond(withServerError());
         
-        ETLJobResponse result = etlService.run(25);
+        ETLJobResponse result = etlService.run(37);
         
         mockServer.verify();        
         assertNull(result);
@@ -92,7 +92,7 @@ public class ETLServiceTest {
         return "<webresult>\r\n" + 
                 "    <result>OK</result>\r\n" + 
                 "    <message>Job started</message>\r\n" + 
-                "    <id>05d919b0-74a3-48d6-84d8-afce359d0449</id>\r\n" + 
+                "    <id>5bad52ff-5c75-48e3-8352-a95671238d12</id>\r\n" + 
                 "</webresult>";
     }
 }
