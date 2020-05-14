@@ -55,13 +55,13 @@ public class InputListener {
         
         DatasetService service = serviceRedirectorService.redirect(incomingData);
         if (service != null) {
-            logger.info("Saving {} into DB {}", incomingData.getClass(), data);
+            logger.info("Saving {} into DB", incomingData.getClass());
             logger.info("GRAYLOG-IP Importado objeto de tipo: " + incomingData.getClass().getSimpleName());
             service.save(incomingData);
         }
         
         if(!(incomingData instanceof ImportResult)) {
-            logger.info("Send data to general kafka topic: {}", data);
+            logger.info("Send data to general kafka topic: {}", data.getClass());
             kafkaService.sendGeneralDataTopic(data);
         }             
 
