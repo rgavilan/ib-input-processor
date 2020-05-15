@@ -1,0 +1,28 @@
+---
+app:
+  # Swagger
+  swagger:
+    enabled: true
+    secured: false
+    authServerUrl: ../oauth
+    authServerClientId: acme
+    authServerClientSecret: acmesecret
+  # Persistence
+  persistence:
+    jpa:
+      generate-ddl: true
+      show-sql: true
+    datasource:
+      url: jdbc:mysql://localhost:3307/app?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&createDatabaseIfNotExist=true
+
+
+  kafka:
+    create-topics: true
+    
+## Actuator
+management:
+  health:
+    redis:
+      enabled: false
+  server:
+    port: 9322	

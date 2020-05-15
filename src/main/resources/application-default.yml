@@ -1,9 +1,0 @@
----
-app:
-  kafka:
-    create-topics: true
-
-## Actuator
-management:
-  server:
-    port: 9321
