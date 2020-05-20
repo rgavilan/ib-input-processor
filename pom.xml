@@ -16,7 +16,7 @@
 	<description>UM - ASIO - input-processor</description>
 
 	<scm>
-		<url>https://git.izertis.com/universidaddemurcia/semantmurc/input-processor</url>
+		<url>scm:git:https://github.com/HerculesCRUE/ib-input-processor.git</url>
 	</scm>
 	
 	<properties>
