@@ -17,8 +17,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.izertis.abstractions.search.PageImplHelper;
-
+import es.um.asio.abstractions.search.PageImplHelper;
 import es.um.asio.domain.importResult.ImportResult;
 import es.um.asio.inputprocessor.service.filter.ImportResultFilter;
 import es.um.asio.inputprocessor.service.repository.ImportResultRepository;

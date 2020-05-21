@@ -50,3 +50,27 @@ Los artefactos se encuentran dentro de input-processor-service/target
 * Artefacto: input-processor-service-{version}.jar
 * JavaDoc: input-processor-service-{version}-javadoc.jar
 * Sources: input-processor-service-{version}-sources.jar
+
+### Service Abstractions
+
+Los artefactos se encuentran dentro de input-processor-service-abstractions/target
+
+* Artefacto: input-processor-service-abstractions-{version}.jar
+* JavaDoc: input-processor-service-abstractions-{version}-javadoc.jar
+* Sources: input-processor-service-abstractions-{version}-sources.jar
+
+### JPA Abstractions
+
+Los artefactos se encuentran dentro de input-processor-jpa-abstractions/target
+
+* Artefacto: input-processor-jpa-abstractions-{version}.jar
+* JavaDoc: input-processor-jpa-abstractions-{version}-javadoc.jar
+* Sources: input-processor-jpa-abstractions-{version}-sources.jar
+
+### Swagger
+
+Los artefactos se encuentran dentro de input-processor-swagger/target
+
+* Artefacto: input-processor-swagger-{version}.jar
+* JavaDoc: input-processor-swagger-{version}-javadoc.jar
+* Sources: input-processor-swagger-{version}-sources.jar

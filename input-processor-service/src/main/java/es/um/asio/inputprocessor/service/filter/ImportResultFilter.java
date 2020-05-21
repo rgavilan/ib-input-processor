@@ -8,11 +8,10 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-import com.izertis.abstractions.filter.AbstractJpaSpecification;
-import com.izertis.abstractions.filter.EntityFilter;
-
 import es.um.asio.abstractions.domain.ExitStatusCode;
 import es.um.asio.abstractions.domain.JobType;
+import es.um.asio.abstractions.filter.AbstractJpaSpecification;
+import es.um.asio.abstractions.filter.EntityFilter;
 import es.um.asio.domain.importResult.ImportResult;
 import es.um.asio.domain.importResult.ImportResult_;
 import lombok.Getter;

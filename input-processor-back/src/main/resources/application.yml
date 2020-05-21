@@ -47,11 +47,6 @@ spring:
       group-id: input-processor
     producer:
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-    
-  # Cache configuration
-  cache:
-    embedded:
-      enabled: true
 
   # Swagger
   swagger:
@@ -76,3 +71,4 @@ management:
       enabled: false
     redis:
       enabled: false
+  

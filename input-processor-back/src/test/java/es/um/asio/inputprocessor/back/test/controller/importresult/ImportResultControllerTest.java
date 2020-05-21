@@ -23,10 +23,9 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.izertis.abstractions.search.PageImplHelper;
-
 import es.um.asio.abstractions.domain.JobType;
 import es.um.asio.abstractions.dto.ImportResultDto;
+import es.um.asio.abstractions.search.PageImplHelper;
 import es.um.asio.inputprocessor.back.controller.importresult.ImportResultController;
 import es.um.asio.inputprocessor.service.filter.ImportResultFilter;
 import es.um.asio.inputprocessor.service.proxy.ImportResultProxy;

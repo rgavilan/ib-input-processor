@@ -53,14 +53,15 @@
 		<org.hibernate.hibernate-jpamodelgen.version>5.4.10.Final</org.hibernate.hibernate-jpamodelgen.version>
 		
 		<dataset-domain-model.version>1.0-SNAPSHOT</dataset-domain-model.version>
-
-		<izertis.libraries.version>1.1.1</izertis.libraries.version>
 	</properties>
 	
 	<modules>
 		<module>input-processor-kafka</module>
 		<module>input-processor-service</module>
 		<module>input-processor-back</module>
+		<module>input-processor-jpa-abstractions</module>
+		<module>input-processor-service-abstractions</module>
+		<module>input-processor-swagger</module>
 	</modules>
 	
 		<dependencyManagement>

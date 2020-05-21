@@ -18,6 +18,9 @@ Para iniciar el entorno de desarrollo se necesita cumplir los siguientes requisi
 * **Módulo back**: módulo que añade una capa de servicios REST a la funcionalidad de la aplicación. Genera un artefacto JAR bootable
 * **Módulo kafka**: módulo que añade la capacidad de consumir mensajes de un topic de Kafka
 * **Módulo service**: módulo que contiene la lógica de la aplicación. Puede ser utilizado como librería independiente para ser integrado en otras aplicaciones
+* **Módulo jpa-abstractions**: módulo con utilidades para el acceso a datos mediante JPA
+* **Módulo service-abstractions**: módulo con utilidades para la generación de servicios
+* **Módulo swagger**: módulo que contine la funcionalidad necesaria para añadir Swagger para la interacción con el API Rest
 
 ## Metodología de desarrollo
 
