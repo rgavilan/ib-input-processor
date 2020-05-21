@@ -17,10 +17,10 @@ Para realizar la compilación se ejecutará el siguiente comando:
 mvn clean package
 ```
 
-En caso de querer generar al mismo tiempo JavaDoc y Sources el comando siguiente: 
+En caso de querer generar al mismo tiempo Sources el comando siguiente: 
 
 ```bash
-mvn clean package javadoc:jar source:jar
+mvn clean package source:jar
 ```
 
 También sería posible instalar o desplegar los artefactos sustituyendo `package` por `install` o `deploy` respectivamente.
@@ -32,7 +32,6 @@ Los artefactos se generarán dentro del directorio `target` de cada uno de los m
 Los artefactos se encuentran dentro de input-processor-back/target
 
 * Artefacto: input-processor-back-{version}.jar
-* JavaDoc: input-processor-back-{version}-javadoc.jar
 * Sources: input-processor-back-{version}-sources.jar
 
 ### Kafka
@@ -40,7 +39,6 @@ Los artefactos se encuentran dentro de input-processor-back/target
 Los artefactos se encuentran dentro de input-processor-kafka/target
 
 * Artefacto: input-processor-kafka-{version}.jar
-* JavaDoc: input-processor-kafka-{version}-javadoc.jar
 * Sources: input-processor-kafka-{version}-sources.jar
 
 ### Service
@@ -48,7 +46,6 @@ Los artefactos se encuentran dentro de input-processor-kafka/target
 Los artefactos se encuentran dentro de input-processor-service/target
 
 * Artefacto: input-processor-service-{version}.jar
-* JavaDoc: input-processor-service-{version}-javadoc.jar
 * Sources: input-processor-service-{version}-sources.jar
 
 ### Service Abstractions
@@ -56,7 +53,6 @@ Los artefactos se encuentran dentro de input-processor-service/target
 Los artefactos se encuentran dentro de input-processor-service-abstractions/target
 
 * Artefacto: input-processor-service-abstractions-{version}.jar
-* JavaDoc: input-processor-service-abstractions-{version}-javadoc.jar
 * Sources: input-processor-service-abstractions-{version}-sources.jar
 
 ### JPA Abstractions
@@ -64,7 +60,6 @@ Los artefactos se encuentran dentro de input-processor-service-abstractions/targ
 Los artefactos se encuentran dentro de input-processor-jpa-abstractions/target
 
 * Artefacto: input-processor-jpa-abstractions-{version}.jar
-* JavaDoc: input-processor-jpa-abstractions-{version}-javadoc.jar
 * Sources: input-processor-jpa-abstractions-{version}-sources.jar
 
 ### Swagger
@@ -72,5 +67,4 @@ Los artefactos se encuentran dentro de input-processor-jpa-abstractions/target
 Los artefactos se encuentran dentro de input-processor-swagger/target
 
 * Artefacto: input-processor-swagger-{version}.jar
-* JavaDoc: input-processor-swagger-{version}-javadoc.jar
 * Sources: input-processor-swagger-{version}-sources.jar
