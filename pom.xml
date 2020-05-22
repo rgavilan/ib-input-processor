@@ -62,6 +62,7 @@
 		<module>input-processor-jpa-abstractions</module>
 		<module>input-processor-service-abstractions</module>
 		<module>input-processor-swagger</module>
+		<module>input-processor-test</module>
 	</modules>
 	
 		<dependencyManagement>
