@@ -151,6 +151,7 @@
 				<version>${org.springframework.security.oauth.version}</version>
 			</dependency>
 			
+			<!-- UM ASIO - dependencies -->
 			<dependency>
 				<groupId>es.um.asio</groupId>
 				<artifactId>dataset-domain-model</artifactId>
