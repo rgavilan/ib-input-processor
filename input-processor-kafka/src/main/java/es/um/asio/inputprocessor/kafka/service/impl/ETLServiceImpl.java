@@ -79,7 +79,7 @@ public class ETLServiceImpl implements ETLService {
             }
         } catch (Exception e) {
             logger.error("Error running ETL process {}. Exception: {}", url, e.getMessage());
-            e.printStackTrace();
+            logger.error("run", e);
         }
 
         return etlJobResponse;
