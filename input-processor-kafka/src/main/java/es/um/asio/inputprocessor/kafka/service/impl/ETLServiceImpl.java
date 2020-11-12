@@ -1,5 +1,12 @@
 package es.um.asio.inputprocessor.kafka.service.impl;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.Base64;
+import java.util.Date;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +18,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import java.util.Base64;
 
+import es.um.asio.abstractions.constants.Constants;
+import es.um.asio.domain.ImportEtlResult.ImportEtlResult;
 import es.um.asio.inputprocessor.kafka.model.ETLJobResponse;
 import es.um.asio.inputprocessor.kafka.service.ETLService;
+import es.um.asio.inputprocessor.service.repository.ImportEtlResultRepository;
 
 /**
  * Service that run job of ETL.
@@ -27,6 +36,9 @@ public class ETLServiceImpl implements ETLService {
      */
     private final Logger logger = LoggerFactory.getLogger(ETLServiceImpl.class);
 
+    @Autowired
+    private ImportEtlResultRepository importEtlResult;
+    
     /** 
      * The rest template. 
      * */
@@ -57,6 +69,8 @@ public class ETLServiceImpl implements ETLService {
     @Value("${app.services.etl.password}")
     private String password;
     
+    @Value("${app.management-system.url}")
+    private String url_management_system;
     
     /**
      * Run ETL job.
@@ -67,23 +81,78 @@ public class ETLServiceImpl implements ETLService {
     @Override
     public ETLJobResponse run(long version) {
         ETLJobResponse etlJobResponse = null;
+        ImportEtlResult importResult = new ImportEtlResult();
+        
         String url = endPoint.concat("/?job=").concat(job).concat("&version=").concat(String.valueOf(version));
+        
+        importResult.setVersion(version);
+        importResult.setEndpoint(url);
+        
+        if(getStatusETL()) {
 
-        try {
-            ResponseEntity<ETLJobResponse> response = restTemplate.exchange(url, HttpMethod.GET, new HttpEntity<ETLJobResponse>(createBasicAuthenticationHeader()), ETLJobResponse.class);
-            etlJobResponse = response.getBody();
-            if (response.getStatusCode() == HttpStatus.OK && etlJobResponse != null && etlJobResponse.getResult().equals("OK")) {
-                logger.info("The ETL job {} has been ran successfully {}", url, response.toString());
-            } else {
-                logger.error("Error running ETL process {}, Response: ", url, response.toString());
-            }
-        } catch (Exception e) {
-            logger.error("Error running ETL process {}. Exception: {}", url, e.getMessage());
-            logger.error("run", e);
+	        try {
+	            ResponseEntity<ETLJobResponse> response = restTemplate.exchange(url, HttpMethod.GET, new HttpEntity<ETLJobResponse>(createBasicAuthenticationHeader()), ETLJobResponse.class);
+	            etlJobResponse = response.getBody();
+	            if (response.getStatusCode() == HttpStatus.OK && etlJobResponse != null && etlJobResponse.getResult().equals(Constants.OK)) {
+	            	importResult.setDateTime(new Date());
+	            	importResult.setMessage(etlJobResponse.getMessage());
+	            	importResult.setStatus(Constants.OK);
+	                logger.info("The ETL job {} has been ran successfully {}", url, response.toString());
+	            } else {
+	            	importResult.setDateTime(new Date());
+	            	importResult.setMessage(response.toString());
+	            	importResult.setStatus(Constants.KO);
+	                logger.error("Error running ETL process {}, Response: ", url, response.toString());
+	            }
+	        } catch (Exception e) {
+	        	importResult.setDateTime(new Date());
+	        	importResult.setMessage(e.getMessage());
+	        	importResult.setStatus(Constants.KO);
+	            logger.error("Error running ETL process {}. Exception: {}", url, e.getMessage());
+	            logger.error("run", e);
+	        }        
+        }else {
+        	importResult.setDateTime(new Date());
+        	importResult.setMessage(Constants.MANAGEMENT_SYSTEM_BUSY);
+        	importResult.setStatus(Constants.KO);        	
         }
-
+        
+        importEtlResult.save(importResult);
+        
         return etlJobResponse;
     }
+    
+    /**
+     *  Método para comprobar el estado de los listeners del Management system.
+     * @return true ( Management system libre) / false (management system ocupado por etl)
+     */
+    private Boolean getStatusETL() {
+    	
+    	try {
+            URL url = new URL(url_management_system);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.setRequestProperty("Accept", "application/json");
+            if (conn.getResponseCode() != 200) {
+            	logger.error("Failed : HTTP Error code : ", conn.getResponseCode());
+                throw new RuntimeException("Failed : HTTP Error code : "
+                        + conn.getResponseCode());
+            }
+            
+            InputStreamReader in = new InputStreamReader(conn.getInputStream());
+            BufferedReader br = new BufferedReader(in);
+            String output;
+            Boolean response = false;
+            while ((output = br.readLine()) != null) {
+                response = Boolean.valueOf(output);
+            }
+            conn.disconnect();
+            return response;
+        } catch (Exception e) {
+        	logger.error("Error durante la llamada al servicio de management-system isMSRunning" + e.getMessage());
+	        return false;
+        }
+     }
     
     /**
      * Creates the basic authentication header.

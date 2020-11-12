@@ -36,6 +36,9 @@ app:
     create-topics: false
     send-general-data-topic: true
     
+  management-system:
+    url: http://localhost:9321/etl-notifications/isMSRunning
+    
 # Spring configuration
 spring:
   kafka:
