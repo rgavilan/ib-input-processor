@@ -20,9 +20,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import es.um.asio.abstractions.constants.Constants;
-import es.um.asio.domain.ImportEtlResult.ImportEtlResult;
+import es.um.asio.domain.importetlresult.ImportEtlResult;
 import es.um.asio.inputprocessor.kafka.model.ETLJobResponse;
 import es.um.asio.inputprocessor.kafka.service.ETLService;
+import es.um.asio.inputprocessor.service.exeption.InputProcessorException;
 import es.um.asio.inputprocessor.service.repository.ImportEtlResultRepository;
 
 /**
@@ -131,9 +132,9 @@ public class ETLServiceImpl implements ETLService {
             conn.setRequestMethod("GET");
             conn.setRequestProperty("Accept", "application/json");
             if (conn.getResponseCode() != 200) {
-            	logger.error("Failed : HTTP Error code : ", conn.getResponseCode());
-                throw new RuntimeException("Failed : HTTP Error code : "
-                        + conn.getResponseCode());
+            	logger.error("Failed HTTP Error code: ", conn.getResponseCode());
+                throw new InputProcessorException("Failed : HTTP Error code : " +
+                        conn.getResponseCode());
             }
             
             InputStreamReader in = new InputStreamReader(conn.getInputStream());
@@ -146,7 +147,7 @@ public class ETLServiceImpl implements ETLService {
             conn.disconnect();
             return response;
         } catch (Exception e) {
-        	logger.error("Error durante la llamada al servicio de management-system isMSRunning" + e.getMessage());
+        	logger.error( e.getMessage(),e);
 	        return false;
         }
      }
