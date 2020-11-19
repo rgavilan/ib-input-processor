@@ -70,7 +70,7 @@ public class ETLServiceImpl implements ETLService {
     private String password;
     
     @Value("${app.management-system.url}")
-    private String url_management_system;
+    private String urlmanagementsystem;
     
     /**
      * Run ETL job.
@@ -87,34 +87,31 @@ public class ETLServiceImpl implements ETLService {
         
         importResult.setVersion(version);
         importResult.setEndpoint(url);
+        importResult.setDateTime(new Date());
+        importResult.setStatus(Constants.KO); 
         
-        if(getStatusETL()) {
+        boolean statusMSETLListener = getStatusETL();
+        
+        if(statusMSETLListener) {
 
 	        try {
 	            ResponseEntity<ETLJobResponse> response = restTemplate.exchange(url, HttpMethod.GET, new HttpEntity<ETLJobResponse>(createBasicAuthenticationHeader()), ETLJobResponse.class);
 	            etlJobResponse = response.getBody();
 	            if (response.getStatusCode() == HttpStatus.OK && etlJobResponse != null && etlJobResponse.getResult().equals(Constants.OK)) {
-	            	importResult.setDateTime(new Date());
 	            	importResult.setMessage(etlJobResponse.getMessage());
 	            	importResult.setStatus(Constants.OK);
 	                logger.info("The ETL job {} has been ran successfully {}", url, response.toString());
-	            } else {
-	            	importResult.setDateTime(new Date());
+	            } else {	            	
 	            	importResult.setMessage(response.toString());
-	            	importResult.setStatus(Constants.KO);
 	                logger.error("Error running ETL process {}, Response: ", url, response.toString());
 	            }
-	        } catch (Exception e) {
-	        	importResult.setDateTime(new Date());
+	        } catch (Exception e) {	        	
 	        	importResult.setMessage(e.getMessage());
-	        	importResult.setStatus(Constants.KO);
 	            logger.error("Error running ETL process {}. Exception: {}", url, e.getMessage());
 	            logger.error("run", e);
 	        }        
         }else {
-        	importResult.setDateTime(new Date());
-        	importResult.setMessage(Constants.MANAGEMENT_SYSTEM_BUSY);
-        	importResult.setStatus(Constants.KO);        	
+        	importResult.setMessage(Constants.MANAGEMENT_SYSTEM_BUSY);        	       	
         }
         
         importEtlResult.save(importResult);
@@ -129,7 +126,7 @@ public class ETLServiceImpl implements ETLService {
     private Boolean getStatusETL() {
     	
     	try {
-            URL url = new URL(url_management_system);
+            URL url = new URL(urlmanagementsystem);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             conn.setRequestProperty("Accept", "application/json");
