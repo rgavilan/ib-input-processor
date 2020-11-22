@@ -101,10 +101,10 @@ public class ETLServiceImpl implements ETLService {
 	            if (response.getStatusCode() == HttpStatus.OK && etlJobResponse != null && etlJobResponse.getResult().equals(Constants.OK)) {
 	            	importResult.setMessage(etlJobResponse.getMessage());
 	            	importResult.setStatus(Constants.OK);
-	                logger.info("The ETL job {} has been ran successfully {}", url, response.toString());
+	                logger.info("The ETL job {} has been ran successfully {}", url, response);
 	            } else {	            	
 	            	importResult.setMessage(response.toString());
-	                logger.error("Error running ETL process {}, Response: ", url, response.toString());
+	                logger.error("Error running ETL process {}, Response: ", url, response);
 	            }
 	        } catch (Exception e) {	        	
 	        	importResult.setMessage(e.getMessage());
@@ -132,7 +132,7 @@ public class ETLServiceImpl implements ETLService {
             conn.setRequestMethod("GET");
             conn.setRequestProperty("Accept", "application/json");
             if (conn.getResponseCode() != 200) {
-            	logger.error("Failed HTTP Error code: ", conn.getResponseCode());
+            	logger.error("Failed HTTP Error code: {}", conn.getResponseCode());
                 throw new InputProcessorException("Failed : HTTP Error code : " +
                         conn.getResponseCode());
             }

@@ -5,7 +5,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import es.um.asio.abstractions.domain.ManagementBusEvent;
 import es.um.asio.abstractions.dto.ImportResultDto;
 import es.um.asio.domain.importResult.ImportResult;
 import es.um.asio.inputprocessor.service.filter.ImportResultFilter;

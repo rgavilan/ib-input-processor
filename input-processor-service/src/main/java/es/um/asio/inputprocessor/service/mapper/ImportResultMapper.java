@@ -12,7 +12,6 @@ import es.um.asio.abstractions.dto.ImportResultDto;
 import es.um.asio.abstractions.search.PageImplHelper;
 import es.um.asio.domain.importResult.ImportResult;
 import es.um.asio.inputprocessor.service.mapper.decorator.ImportResultMapperDecorator;
-import org.mapstruct.Mapping;
 
 /**
  * MapStruct Mapper for {@link ImportResult}.
