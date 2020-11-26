@@ -8,6 +8,7 @@ import es.um.asio.domain.importetlresult.ImportEtlResult;
 /**
  * {@link ImportEtlResultRepository} repository.
  */
-public interface ImportEtlResultRepository extends JpaRepository<ImportEtlResult, String>, JpaSpecificationExecutor<ImportEtlResult>{
+public interface ImportEtlResultRepository
+		extends JpaRepository<ImportEtlResult, String>, JpaSpecificationExecutor<ImportEtlResult> {
 
 }

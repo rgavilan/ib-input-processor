@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
  * Service Spring configuration.
  */
 @Configuration
-@ComponentScan(basePackageClasses = ProjectRepository.class)
+@ComponentScan(basePackageClasses = { ProjectRepository.class, ImportEtlResultRepository.class })
 public class RepositoryConfig {
 
 }

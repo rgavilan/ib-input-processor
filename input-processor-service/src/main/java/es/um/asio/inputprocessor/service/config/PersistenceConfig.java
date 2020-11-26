@@ -31,6 +31,7 @@ import es.um.asio.domain.DataSetData;
 import es.um.asio.inputprocessor.service.config.properties.DatasourceProperties;
 import es.um.asio.inputprocessor.service.config.properties.JpaProperties;
 import es.um.asio.inputprocessor.service.config.properties.PersistenceProperties;
+import es.um.asio.inputprocessor.service.repository.ImportEtlResultRepository;
 import es.um.asio.inputprocessor.service.repository.ProjectRepository;
 
 /**
@@ -38,134 +39,137 @@ import es.um.asio.inputprocessor.service.repository.ProjectRepository;
  */
 @Configuration
 @EnableConfigurationProperties(PersistenceProperties.class)
-@EnableJpaRepositories(basePackageClasses = { ProjectRepository.class })
+@EnableJpaRepositories(basePackageClasses = { ProjectRepository.class, ImportEtlResultRepository.class })
 @EnableTransactionManagement
 @EntityScan(basePackageClasses = { DataSetData.class })
 public class PersistenceConfig {
 
-    @Autowired
-    private ApplicationContext applicationContext;
+	@Autowired
+	private ApplicationContext applicationContext;
 
-    /**
-     * Configuration properties.
-     */
-    @Autowired
-    private PersistenceProperties properties;
+	/**
+	 * Configuration properties.
+	 */
+	@Autowired
+	private PersistenceProperties properties;
 
-    /**
-     * Configures de datasource for the application.<br>
-     * If {@link DatasourceProperties#jndiName} has a value, it will be used to obtain one instead of using
-     * {@link DatasourceProperties#driverClassName}, {@link DatasourceProperties#url},
-     * {@link DatasourceProperties#username}, {@link DatasourceProperties#password}
-     * fields to build it.<br>
-     * In either case, HikariCP is used to wrap the datasource.
-     *
-     * @return an instance of {@link javax.sql.DataSource} to be used as the datasource
-     */
-    @Bean
-    public DataSource dataSource() {
-        final HikariConfig config = new HikariConfig();
-        final DatasourceProperties datasourceProperties = this.properties.getDatasource();
+	/**
+	 * Configures de datasource for the application.<br>
+	 * If {@link DatasourceProperties#jndiName} has a value, it will be used to
+	 * obtain one instead of using {@link DatasourceProperties#driverClassName},
+	 * {@link DatasourceProperties#url}, {@link DatasourceProperties#username},
+	 * {@link DatasourceProperties#password} fields to build it.<br>
+	 * In either case, HikariCP is used to wrap the datasource.
+	 *
+	 * @return an instance of {@link javax.sql.DataSource} to be used as the
+	 *         datasource
+	 */
+	@Bean
+	public DataSource dataSource() {
+		final HikariConfig config = new HikariConfig();
+		final DatasourceProperties datasourceProperties = this.properties.getDatasource();
 
-        if (StringUtils.isNotBlank(datasourceProperties.getJndiName())) {
-            // JNDI conection
-            final JndiDataSourceLookup dsLookup = new JndiDataSourceLookup();
-            dsLookup.setResourceRef(true);
-            final DataSource dataSource = dsLookup.getDataSource(datasourceProperties.getJndiName());
-            config.setDataSource(dataSource);
-        } else {
-            // Paarameters connection
-            config.setDriverClassName(datasourceProperties.getDriverClassName());
-            config.setJdbcUrl(datasourceProperties.getUrl());
-            config.setUsername(datasourceProperties.getUsername());
-            config.setPassword(datasourceProperties.getPassword());
-        }
+		if (StringUtils.isNotBlank(datasourceProperties.getJndiName())) {
+			// JNDI conection
+			final JndiDataSourceLookup dsLookup = new JndiDataSourceLookup();
+			dsLookup.setResourceRef(true);
+			final DataSource dataSource = dsLookup.getDataSource(datasourceProperties.getJndiName());
+			config.setDataSource(dataSource);
+		} else {
+			// Paarameters connection
+			config.setDriverClassName(datasourceProperties.getDriverClassName());
+			config.setJdbcUrl(datasourceProperties.getUrl());
+			config.setUsername(datasourceProperties.getUsername());
+			config.setPassword(datasourceProperties.getPassword());
+		}
 
-        config.addDataSourceProperty("cachePrepStmts", "true");
-        config.addDataSourceProperty("prepStmtCacheSize", "250");
-        config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
-        config.addDataSourceProperty("useServerPrepStmts", "true");
+		config.addDataSourceProperty("cachePrepStmts", "true");
+		config.addDataSourceProperty("prepStmtCacheSize", "250");
+		config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
+		config.addDataSourceProperty("useServerPrepStmts", "true");
 
-        return new HikariDataSource(config);
-    }
+		return new HikariDataSource(config);
+	}
 
-    /**
-     * Builds the entity manager for the application.
-     *
-     * @param dataSource
-     *            The datasource to be used
-     * @return an instance of {@link org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean} for data access
-     */
-    @Bean
-    @Autowired
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory(final DataSource dataSource) {
-        final JpaProperties jpa = this.properties.getJpa();
+	/**
+	 * Builds the entity manager for the application.
+	 *
+	 * @param dataSource The datasource to be used
+	 * @return an instance of
+	 *         {@link org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean}
+	 *         for data access
+	 */
+	@Bean
+	@Autowired
+	public LocalContainerEntityManagerFactoryBean entityManagerFactory(final DataSource dataSource) {
+		final JpaProperties jpa = this.properties.getJpa();
 
-        final LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
-        entityManagerFactoryBean.setDataSource(dataSource);
-        entityManagerFactoryBean.setPackagesToScan(this.getEntityPackages().stream().toArray(String[]::new));
-        entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+		final LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
+		entityManagerFactoryBean.setDataSource(dataSource);
+		entityManagerFactoryBean.setPackagesToScan(this.getEntityPackages().stream().toArray(String[]::new));
+		entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
 
-        final Properties jpaProperties = new Properties();
-        if (StringUtils.isNotBlank(jpa.getDialect())) {
-            jpaProperties.put(AvailableSettings.DIALECT, jpa.getDialect());
-        }
+		final Properties jpaProperties = new Properties();
+		if (StringUtils.isNotBlank(jpa.getDialect())) {
+			jpaProperties.put(AvailableSettings.DIALECT, jpa.getDialect());
+		}
 
-        if (jpa.isGenerateDdl()) {
-            jpaProperties.put(AvailableSettings.HBM2DDL_AUTO, "update");
-        }
+		if (jpa.isGenerateDdl()) {
+			jpaProperties.put(AvailableSettings.HBM2DDL_AUTO, "update");
+		}
 
-        jpaProperties.put(AvailableSettings.SHOW_SQL, jpa.isShowSql());
-        jpaProperties.put(AvailableSettings.FORMAT_SQL, jpa.isShowSql());
-        
-        jpaProperties.put(AvailableSettings.USE_SECOND_LEVEL_CACHE, false);
-        jpaProperties.putAll(jpa.getProperties());
+		jpaProperties.put(AvailableSettings.SHOW_SQL, jpa.isShowSql());
+		jpaProperties.put(AvailableSettings.FORMAT_SQL, jpa.isShowSql());
 
-        entityManagerFactoryBean.setJpaProperties(jpaProperties);
+		jpaProperties.put(AvailableSettings.USE_SECOND_LEVEL_CACHE, false);
+		jpaProperties.putAll(jpa.getProperties());
 
-        return entityManagerFactoryBean;
-    }
+		entityManagerFactoryBean.setJpaProperties(jpaProperties);
 
-    /**
-     * Creates and configures the TransactionManager instance for the platform.
-     *
-     * @return an instance of {@link org.springframework.transaction.PlatformTransactionManager}
-     */
-    @Bean
-    public PlatformTransactionManager transactionManager() {
-        return new JpaTransactionManager();
-    }
+		return entityManagerFactoryBean;
+	}
 
-    /**
-     * Gets packages containing entities.
-     * 
-     * @return Set of packages containing entities
-     */
-    private Set<String> getEntityPackages() {
-        final Set<String> packages = Sets.newHashSet();
+	/**
+	 * Creates and configures the TransactionManager instance for the platform.
+	 *
+	 * @return an instance of
+	 *         {@link org.springframework.transaction.PlatformTransactionManager}
+	 */
+	@Bean
+	public PlatformTransactionManager transactionManager() {
+		return new JpaTransactionManager();
+	}
 
-        final Map<String, Object> beans = this.applicationContext.getBeansWithAnnotation(EntityScan.class);
+	/**
+	 * Gets packages containing entities.
+	 * 
+	 * @return Set of packages containing entities
+	 */
+	private Set<String> getEntityPackages() {
+		final Set<String> packages = Sets.newHashSet();
 
-        EntityScan annotation;
+		final Map<String, Object> beans = this.applicationContext.getBeansWithAnnotation(EntityScan.class);
 
-        for (final String name : beans.keySet()) {
-            annotation = this.applicationContext.findAnnotationOnBean(name, EntityScan.class);
+		EntityScan annotation;
 
-            if(annotation != null) {
-                // Get basePackages configuration
-                if (annotation.basePackages() != null) {
-                    packages.addAll(Arrays.asList(annotation.basePackages()));
-                }
-    
-                // Get basePackageClasses configuration
-                if (annotation.basePackageClasses() != null) {
-                    for (final Class<?> clazz : annotation.basePackageClasses()) {
-                        packages.add(clazz.getPackageName());
-                    }
-                }
-            }
-        }
+		for (final String name : beans.keySet()) {
+			annotation = this.applicationContext.findAnnotationOnBean(name, EntityScan.class);
 
-        return packages;
-    }
+			if (annotation != null) {
+				// Get basePackages configuration
+				if (annotation.basePackages() != null) {
+					packages.addAll(Arrays.asList(annotation.basePackages()));
+				}
+
+				// Get basePackageClasses configuration
+				if (annotation.basePackageClasses() != null) {
+					for (final Class<?> clazz : annotation.basePackageClasses()) {
+						packages.add(clazz.getPackageName());
+					}
+				}
+			}
+		}
+
+		return packages;
+	}
 }
