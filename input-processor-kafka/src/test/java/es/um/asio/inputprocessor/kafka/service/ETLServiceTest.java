@@ -79,7 +79,7 @@ public class ETLServiceTest {
 
 		mockServerMS = MockRestServiceServer.createServer(restTemplateMS);
 
-		// Mock findAll - page
+		// Mock save Import ETL result
 		Mockito.when(this.mockRepository.save(any())).thenAnswer(invocation -> {
 			ImportEtlResult importResult = new ImportEtlResult();
 			importResult.setVersion(0);
