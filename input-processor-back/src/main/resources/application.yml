@@ -34,7 +34,7 @@ app:
     input-topic-name: input-data
     general-contingency-topic-name: general-contingency-data
     create-topics: false
-    send-general-data-topic: true
+    send-general-data-topic: false
     
   management-system:
     url: http://localhost:9321/etl-notifications/isMSRunning
