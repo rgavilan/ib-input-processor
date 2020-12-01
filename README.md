@@ -90,6 +90,7 @@ Será preciso configurar las siguientes variables de entorno cuando se instale e
 |`APP_SERVICES_ETL_JOB`| Nombre del job que se invocará al hacer la llamada al proceso ETL | main |
 |`APP_SERVICES_ETL_USERNAME`| Nombre de usuario para invocar el proceso ETL | asioetl |
 |`APP_SERVICES_ETL_PASSWORD`| Contraseña para invocar el proceso ETL | asioetl |
+|`APP_MANAGEMENT_SYSTEM_URL`| Url para saber si el Management-System está corriendo (evitar importaciones concurrentes) | http://localhost:9321/etl-notifications/isMSRunning |
 
 ### Ejecución
 
