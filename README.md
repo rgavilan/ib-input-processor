@@ -15,6 +15,10 @@
 
 # ASIO - Procesador de entrada
 
+|     | Master |
+| --- | ------ |
+| Quality Gate | [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=HerculesCRUE_ib-input-processor&metric=alert_status)](https://sonarcloud.io/dashboard?id=HerculesCRUE_ib-input-processor) |
+
 Procesador de datos del módulo de entrada para el proyecto Backend SGI (ASIO). 
 
 ## OnBoarding
