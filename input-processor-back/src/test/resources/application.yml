@@ -1,28 +1,61 @@
-#---
-#app:
-#  persistence:
-#    datasource:
-#      driver-class-name: org.h2.Driver
-#      username: root
-#      password: 
-#      url: 'jdbc:h2:mem:'
-#    jpa:
-#      dialect: org.hibernate.dialect.H2Dialect
-#      generate-ddl: true
-#      show-sql: true
-#      properties:
-#        hibernate.temp.use_jdbc_metadata_defaults: false
-#  # Solr
-#  solr:
-#    enabled: false
-#    
-#  # CORS
-#  cors:
-#    enabled: true
-#    allowedOrigin: '*'
-#    allowedMethods: GET,POST,PUT,DELETE
-#    allowedHeaders:
-#      - Authorization
-#      - X-Requested-With
-#      - Content-Type
-#    maxAge: 3600
+---
+app:
+ # CORS
+  cors:
+    enabled: true
+    allowedOrigin: '*'
+    allowedMethods: GET,POST,PUT,DELETE
+    allowedHeaders:
+      - Authorization
+      - X-Requested-With
+      - Content-Type
+    maxAge: 3600     
+  persistence:
+    datasource:
+      driver-class-name: org.h2.Driver
+      username: root
+      password: 
+      url: 'jdbc:h2:mem:'
+    jpa:
+      dialect: org.hibernate.dialect.H2Dialect
+      generate-ddl: true
+      show-sql: true
+      properties:
+        hibernate.temp.use_jdbc_metadata_defaults: false        
+
+  # Cache configuration
+  cache:
+    embedded:
+      enabled: true
+
+  # Swagger
+  swagger:
+    enabled: false
+
+    ## Actuator
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: always
+  endpoints:
+    web:
+      base-path: /management
+  server:
+    port: 9327
+  health:
+    mail:
+      enabled: false
+    ldap:
+      enabled: false
+    redis:
+      enabled: false
+# Spring
+spring:
+    main:
+      web-application-type: none
+
+## In case of configure web endpoints, remove it or change port number
+server:
+  port: ${management.server.port}  
