@@ -8,7 +8,7 @@ import io.cucumber.junit.CucumberOptions;
 @RunWith(Cucumber.class)
 @CucumberOptions(plugin = { "pretty", "html:target/cucumber/cucumber.html", "summary",
 		"json:target/cucumber/cucumber.json", "junit:target/cucumber/cucumber-junit.xml" }, features = {
-				"src/test/features" }, glue = { "es.um.asio.inputprocessor.back.test.runners.stepdefs" })
+				"src/test/features" }, glue = { "es.um.asio.inputprocessor.back.test.runners.stepdefs" }, dryRun = true)
 public class InputProcessorRunnerTest {
 
 }
