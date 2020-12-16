@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.junit.Assume;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,7 +25,6 @@ import es.um.asio.inputprocessor.back.controller.importresult.ImportResultContro
 import es.um.asio.inputprocessor.service.filter.ImportResultFilter;
 import es.um.asio.inputprocessor.service.proxy.ImportResultProxy;
 import io.cucumber.java.Before;
-import io.cucumber.java.PendingException;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.spring.CucumberContextConfiguration;
@@ -82,12 +82,12 @@ public class InputProcessorStepDefinitionsTest {
 
 	@Given("^read oai-pmh$")
 	public void read_oai_pmh() {
-		// TODO
+		Assume.assumeTrue(false);
 	}
 
 	@Then("^the service process oai-pmh data$")
 	public void the_service_process_oai_pmh_data() {
-		throw new PendingException();
+		Assume.assumeTrue(false);
 	}
 
 }
