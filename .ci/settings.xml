@@ -18,12 +18,12 @@
           <snapshots><enabled>true</enabled></snapshots>
         </repository>
         <repository>
-          <id>github-asio-abstractions</id>
+          <id>github</id>
           <name>GitHub asio-abstractions Apache Maven Packages</name>
           <url>https://maven.pkg.github.com/HerculesCRUE/ib-asio-abstractions</url>
         </repository>
         <repository>
-          <id>github-domain-model</id>
+          <id>github</id>
           <name>GitHub domain-model Apache Maven Packages</name>
           <url>https://maven.pkg.github.com/HerculesCRUE/ib-domain-model</url>
         </repository>
