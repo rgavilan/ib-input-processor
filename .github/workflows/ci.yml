@@ -32,7 +32,7 @@ jobs:
         env:
           GITHUB_USER: ${{ secrets.PERSONAL_GITHUB_USER }}
           GITHUB_TOKEN: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
-        run: mvn -s ./.ci/settings.xml -B -U verify
+        run: mvn -s ./.ci/settings.xml -B -U clean package dependency-check:aggregate jacoco:report-aggregate -DfailOnError=false
       - name: Prepare Sonar
         run: |
           cp input-processor-test/target/site/jacoco-aggregate/jacoco.xml input-processor-back/target/site/jacoco
