@@ -33,6 +33,11 @@ jobs:
           GITHUB_USER: ${{ secrets.PERSONAL_GITHUB_USER }}
           GITHUB_TOKEN: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
         run: mvn -s ./.ci/settings.xml -B -U verify
+      - name: Prepare Sonar
+        run: |
+          cp input-processor-test/target/site/jacoco-aggregate/jacoco.xml input-processor-back/target/site/jacoco
+          cp input-processor-test/target/site/jacoco-aggregate/jacoco.xml input-processor-service/target/site/jacoco
+          cp input-processor-test/target/site/jacoco-aggregate/jacoco.xml input-processor-kafka/target/site/jacoco
       - name: Analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
